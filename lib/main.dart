@@ -2,14 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'providers/auth_provider.dart';
-import 'screens/splash_screen.dart';    // SplashScreen harus ada
-import 'screens/home/home_screen.dart';  // Impor HomeScreen
-import 'screens/auth/login_screen.dart'; // Impor LoginScreen
+import 'screens/splash_screen.dart';
+import 'screens/home/home_screen.dart';
+import 'screens/auth/login_screen.dart';
+import 'screens/auth/register_screen.dart';  // Pastikan ini ada
+import 'config/firebase_options.dart'; // Pastikan sudah mengimpor firebase_options.dart
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();  // Inisialisasi Firebase
-  runApp(MyApp());  // Jalankan aplikasi setelah Firebase diinisialisasi
+  
+  // Inisialisasi Firebase dengan FirebaseOptions
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);  // Menggunakan DefaultFirebaseOptions
+  
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -21,9 +27,10 @@ class MyApp extends StatelessWidget {
         title: 'Balearnpro',
         initialRoute: '/',
         routes: {
-          '/': (context) => SplashScreen(),  // SplashScreen yang pertama
-          '/home': (context) => HomeScreen(),  // Halaman Home
-          '/login': (context) => LoginScreen(), // Halaman Login
+          '/': (context) => SplashScreen(),
+          '/home': (context) => HomeScreen(),
+          '/login': (context) => LoginScreen(),
+          '/register': (context) => RegisterScreen(),
         },
       ),
     );

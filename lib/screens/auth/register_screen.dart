@@ -16,9 +16,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
   bool _isLoading = false;
 
   void _register() async {
+    // Validate inputs first
+    if (_nameController.text.isEmpty ||
+        _emailController.text.isEmpty ||
+        _passwordController.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Please fill in all fields')),
+      );
+      return;
+    }
+
     setState(() {
       _isLoading = true;
     });
+
     try {
       final authProvider = Provider.of<AuthProvider>(context, listen: false);
       await authProvider.register(
@@ -26,10 +37,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
         _passwordController.text.trim(),
         _nameController.text.trim(),
       );
+      // After successful registration, navigate to login
       Navigator.pushReplacementNamed(context, '/login');
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(e.toString())),
+        SnackBar(content: Text('Registration failed: $e')),
       );
     } finally {
       setState(() {
@@ -50,27 +62,32 @@ class _RegisterScreenState extends State<RegisterScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            // Full Name Field
             TextField(
               controller: _nameController,
               decoration: InputDecoration(labelText: 'Full Name'),
             ),
+            // Email Field
             TextField(
               controller: _emailController,
               decoration: InputDecoration(labelText: 'Email'),
               keyboardType: TextInputType.emailAddress,
             ),
+            // Password Field
             TextField(
               controller: _passwordController,
               decoration: InputDecoration(labelText: 'Password'),
               obscureText: true,
             ),
             SizedBox(height: 20),
+            // Loading indicator or Register Button
             _isLoading
                 ? Center(child: CircularProgressIndicator())
                 : ElevatedButton(
                     onPressed: _register,
                     child: Text('Register'),
                   ),
+            // Redirect to Login if already have an account
             TextButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/login');

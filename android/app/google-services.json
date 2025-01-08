@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "283866349676",
+    "project_id": "balearnpro",
+    "storage_bucket": "balearnpro.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:283866349676:android:99d4ab07812127bbce1849",
+        "android_client_info": {
+          "package_name": "com.example.balearnpro"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNBtIfB0ycOyIPvSMBSq4aUNTEkdEb5qs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:283866349676:android:50aa8003ae5a6260ce1849",
+        "android_client_info": {
+          "package_name": "com.example.balearnproapk"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNBtIfB0ycOyIPvSMBSq4aUNTEkdEb5qs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
