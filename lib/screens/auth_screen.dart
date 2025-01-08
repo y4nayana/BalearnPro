@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'home_screen.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -10,27 +11,60 @@ class AuthScreen extends StatefulWidget {
 class _AuthScreenState extends State<AuthScreen> {
   bool isLogin = true;
 
+  final _usernameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
   final _auth = FirebaseAuth.instance;
 
   void _authenticate() async {
+    if (!isLogin && _passwordController.text.trim() != _confirmPasswordController.text.trim()) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Passwords do not match')),
+      );
+      return;
+    }
+
     try {
+      UserCredential userCredential;
+
       if (isLogin) {
-        await _auth.signInWithEmailAndPassword(
+        // Login User
+        userCredential = await _auth.signInWithEmailAndPassword(
           email: _emailController.text.trim(),
           password: _passwordController.text.trim(),
+        );
+
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => HomePage(uid: userCredential.user!.uid)),
         );
       } else {
-        await _auth.createUserWithEmailAndPassword(
+        // Register User
+        userCredential = await _auth.createUserWithEmailAndPassword(
           email: _emailController.text.trim(),
           password: _passwordController.text.trim(),
         );
+
+        // Simpan Username ke Firestore
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(userCredential.user!.uid)
+            .set({
+          'username': _usernameController.text.trim(),
+          'email': _emailController.text.trim(),
+        });
+
+        // Tampilkan Notifikasi Berhasil
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Registration successful! Please log in.')),
+        );
+
+        // Ubah ke Mode Login
+        setState(() {
+          isLogin = true;
+        });
       }
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => HomePage()),
-      );
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(e.toString())),
@@ -52,28 +86,41 @@ class _AuthScreenState extends State<AuthScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            TextField(
-              controller: _emailController,
-              decoration: InputDecoration(labelText: 'Email'),
-              keyboardType: TextInputType.emailAddress,
-            ),
-            TextField(
-              controller: _passwordController,
-              decoration: InputDecoration(labelText: 'Password'),
-              obscureText: true,
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _authenticate,
-              child: Text(isLogin ? 'Login' : 'Register'),
-            ),
-            TextButton(
-              onPressed: _toggleAuthMode,
-              child: Text(isLogin ? 'Create an account' : 'Have an account? Login'),
-            ),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              if (!isLogin)
+                TextField(
+                  controller: _usernameController,
+                  decoration: InputDecoration(labelText: 'Username'),
+                ),
+              TextField(
+                controller: _emailController,
+                decoration: InputDecoration(labelText: 'Email'),
+                keyboardType: TextInputType.emailAddress,
+              ),
+              TextField(
+                controller: _passwordController,
+                decoration: InputDecoration(labelText: 'Password'),
+                obscureText: true,
+              ),
+              if (!isLogin)
+                TextField(
+                  controller: _confirmPasswordController,
+                  decoration: InputDecoration(labelText: 'Confirm Password'),
+                  obscureText: true,
+                ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: _authenticate,
+                child: Text(isLogin ? 'Login' : 'Register'),
+              ),
+              TextButton(
+                onPressed: _toggleAuthMode,
+                child: Text(isLogin ? 'Create an account' : 'Have an account? Login'),
+              ),
+            ],
+          ),
         ),
       ),
     );
