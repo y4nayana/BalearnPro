@@ -1,6 +1,6 @@
 allprojects {
     repositories {
-        google()  // Pastikan Google repository ada
+        google()
         mavenCentral()
     }
 }
@@ -15,15 +15,4 @@ subprojects {
 
 tasks.register("clean", Delete) {
     delete rootProject.buildDir
-}
-
-buildscript {
-    repositories {
-        google()  // Pastikan Google repo ada di sini
-        mavenCentral()
-    }
-    dependencies {
-        // Menambahkan Google services plugin
-        classpath 'com.google.gms:google-services:4.4.2'  // Versi terbaru
-    }
 }
