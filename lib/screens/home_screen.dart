@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:balearnpro2/screens/login_screen.dart';
 import 'package:balearnpro2/screens/lesson_screen.dart';
 import 'package:balearnpro2/screens/video_screen.dart';
-import 'package:balearnpro2/screens/new_chat_screen.dart';
+import 'package:balearnpro2/screens/add_contact_screen.dart';
 import 'package:balearnpro2/screens/kalkulator_screen.dart';
 import 'package:balearnpro2/screens/lainnya_screen.dart';
 import 'package:balearnpro2/screens/kontak_screen.dart';

@@ -1,94 +1,85 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'chat_screen.dart';
-import 'new_chat_screen.dart';
+import 'add_contact_screen.dart';
 
 class KontakScreen extends StatelessWidget {
   final String currentUserId;
 
   KontakScreen({required this.currentUserId});
 
-  // Fungsi untuk memformat timestamp menjadi string yang user-friendly
-  String formatTimestamp(Timestamp timestamp) {
-    final DateTime date = timestamp.toDate();
-    final now = DateTime.now();
+  Future<String> createOrGetChat(String otherUserId) async {
+    final chatRef = FirebaseFirestore.instance.collection('chats');
 
-    if (date.day == now.day && date.month == now.month && date.year == now.year) {
-      return "${date.hour}:${date.minute.toString().padLeft(2, '0')}"; // Format waktu jika hari ini
-    } else {
-      return "${date.day}/${date.month}/${date.year}"; // Format tanggal
+    // Periksa apakah chat sudah ada
+    final existingChat = await chatRef
+        .where('users', arrayContains: currentUserId)
+        .get();
+
+    for (var doc in existingChat.docs) {
+      final users = List<String>.from(doc['users']);
+      if (users.contains(otherUserId)) {
+        return doc.id; // Jika sudah ada, kembalikan chatId
+      }
     }
+
+    // Jika belum ada, buat dokumen chat baru
+    final newChat = await chatRef.add({
+      'users': [currentUserId, otherUserId],
+      'lastMessage': '',
+      'timestamp': FieldValue.serverTimestamp(),
+    });
+
+    return newChat.id;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Chats'),
+        title: Text('Contacts'),
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
-            .collection('chats')
-            .where('users', arrayContains: currentUserId) // Filter berdasarkan pengguna saat ini
-            .orderBy('timestamp', descending: true) // Urutkan berdasarkan waktu terbaru
+            .collection('contacts')
+            .where('addedBy', isEqualTo: currentUserId)
             .snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return Center(child: CircularProgressIndicator());
           }
 
-          final chatDocs = snapshot.data!.docs;
-          if (chatDocs.isEmpty) {
-            return Center(child: Text('No chats yet.'));
+          final contacts = snapshot.data!.docs;
+
+          if (contacts.isEmpty) {
+            return Center(child: Text('No contacts added yet.'));
           }
 
           return ListView.builder(
-            itemCount: chatDocs.length,
+            itemCount: contacts.length,
             itemBuilder: (context, index) {
-              final chat = chatDocs[index];
-              final otherUserId = (chat['users'] as List)
-                  .firstWhere((uid) => uid != currentUserId);
+              final contact = contacts[index];
+              final contactId = contact['contactId'];
+              final name = contact['name'];
+              final email = contact['email'];
 
-              return FutureBuilder<DocumentSnapshot>(
-                future: FirebaseFirestore.instance.collection('users').doc(otherUserId).get(),
-                builder: (context, userSnapshot) {
-                  if (!userSnapshot.hasData) {
-                    return ListTile(
-                      title: Text('Loading...'),
-                    );
-                  }
+              return ListTile(
+                title: Text(name),
+                subtitle: Text(email),
+                onTap: () async {
+                  // Dapatkan atau buat chatId untuk kontak ini
+                  final chatId = await createOrGetChat(contactId);
 
-                  final userData = userSnapshot.data!;
-                  final userName = '${userData['firstName']} ${userData['lastName'] ?? ''}';
-
-                  // Mendapatkan lastMessage dan timestamp
-                  final lastMessage = chat['lastMessage'] ?? 'No messages yet';
-                  final timestamp = chat['timestamp'] as Timestamp;
-
-                  return ListTile(
-                    leading: CircleAvatar(
-                      backgroundColor: Colors.blue,
-                      child: Text(userName[0]),
+                  // Navigasikan ke ChatScreen
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ChatScreen(
+                        chatId: chatId,
+                        otherUserId: contactId,
+                        otherUserName: name,
+                      ),
                     ),
-                    title: Text(userName),
-                    subtitle: Text(
-                      lastMessage,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    trailing: Text(formatTimestamp(timestamp)),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ChatScreen(
-                            chatId: chat.id,
-                            otherUserId: otherUserId,
-                            otherUserName: userName,
-                          ),
-                        ),
-                      );
-                    },
                   );
                 },
               );
@@ -99,11 +90,10 @@ class KontakScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
-          // Arahkan ke layar untuk membuat chat baru
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => NewChatScreen(currentUserId: currentUserId),
+              builder: (context) => AddContactScreen(currentUserId: currentUserId),
             ),
           );
         },

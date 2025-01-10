@@ -4,7 +4,7 @@
             "outputFile": "com.balearnpro.app-mergeReleaseResources-47:/values-watch-v20/values-watch-v20.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\KRISNA\\.gradle\\caches\\transforms-3\\1b7721f3354af595d4450da455ce4ae7\\transformed\\appcompat-1.6.1\\res\\values-watch-v20\\values-watch-v20.xml",
+                    "source": "C:\\Users\\KRISNA\\.gradle\\caches\\transforms-3\\c8c2489ff0e3004219bd286dd798d634\\transformed\\appcompat-1.6.1\\res\\values-watch-v20\\values-watch-v20.xml",
                     "from": {
                         "startLines": "2,5,8",
                         "startColumns": "4,4,4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\KRISNA\\.gradle\\caches\\transforms-3\\97bada308a20dac879151017f5d3a701\\transformed\\jetified-play-services-auth-20.7.0\\res\\values-watch-v20\\values.xml",
+                    "source": "C:\\Users\\KRISNA\\.gradle\\caches\\transforms-3\\4aaad68b432d7879790f7668b0c1fe21\\transformed\\jetified-play-services-auth-20.7.0\\res\\values-watch-v20\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11",
                         "startColumns": "0,0,0,0,0,0,0,0",

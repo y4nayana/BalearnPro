@@ -4,9 +4,9 @@
     minSdkVersion="23"
     targetSdkVersion="34"
     mergedManifest="build\intermediates\merged_manifest\release\AndroidManifest.xml"
-    proguardFiles="build\intermediates\default_proguard_files\global\proguard-android.txt-8.1.0;C:\Users\KRISNA\flutter\packages\flutter_tools\gradle\flutter_proguard_rules.pro;proguard-rules.pro;build\intermediates\default_proguard_files\global\proguard-android-optimize.txt-8.1.0;proguard-rules.pro"
+    proguardFiles="build\intermediates\default_proguard_files\global\proguard-android-optimize.txt-8.1.0;C:\Users\KRISNA\flutter\packages\flutter_tools\gradle\flutter_proguard_rules.pro;proguard-rules.pro;build\intermediates\default_proguard_files\global\proguard-android-optimize.txt-8.1.0;proguard-rules.pro"
     partialResultsDir="build\intermediates\lint_vital_partial_results\release\out"
-    desugaredMethodsFiles="C:\Users\KRISNA\.gradle\caches\transforms-3\2781ec63c8285c70fbaaacfc372cee51\transformed\D8BackportedDesugaredMethods.txt">
+    desugaredMethodsFiles="C:\Users\KRISNA\.gradle\caches\transforms-3\a2d2f3d8d6917b27dc12ca13676f87a3\transformed\D8BackportedDesugaredMethods.txt">
   <buildFeatures
       namespacing="REQUIRED"/>
   <sourceProviders>
@@ -30,6 +30,6 @@
       applicationId="com.balearnpro.app"
       generatedSourceFolders="build\generated\ap_generated_sources\release\out"
       generatedResourceFolders="build\generated\res\google-services\release;build\generated\res\resValues\release"
-      desugaredMethodsFiles="C:\Users\KRISNA\.gradle\caches\transforms-3\2781ec63c8285c70fbaaacfc372cee51\transformed\D8BackportedDesugaredMethods.txt">
+      desugaredMethodsFiles="C:\Users\KRISNA\.gradle\caches\transforms-3\a2d2f3d8d6917b27dc12ca13676f87a3\transformed\D8BackportedDesugaredMethods.txt">
   </mainArtifact>
 </variant>
