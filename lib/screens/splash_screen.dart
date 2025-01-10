@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'home_screen.dart';  // Pastikan sudah sesuai
-import 'login_screen.dart'; // Pastikan sudah sesuai
+import 'Login/login_screen.dart'; // Pastikan sudah sesuai
 
 class SplashScreen extends StatefulWidget {
   @override

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'home_screen.dart'; // Pastikan ini sesuai path
+import '../home_screen.dart'; // Pastikan ini sesuai path
 import 'register_screen.dart'; // Pastikan ini sesuai path
 
 class LoginScreen extends StatefulWidget {

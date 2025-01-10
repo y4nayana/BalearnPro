@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:balearnpro2/screens/login_screen.dart';
+import 'package:balearnpro2/screens/Login/login_screen.dart';
 import 'package:balearnpro2/screens/lesson_screen.dart';
 import 'package:balearnpro2/screens/video_screen.dart';
-import 'package:balearnpro2/screens/kontak_screen.dart';
-import 'package:balearnpro2/screens/kalkulator_screen.dart';
+import 'package:balearnpro2/screens/chat/kontak_screen.dart';
+import 'package:balearnpro2/screens/Kalkulator/kalkulator_screen.dart';
 import 'package:balearnpro2/screens/lainnya_screen.dart';
 
 class HomeScreen extends StatefulWidget {
