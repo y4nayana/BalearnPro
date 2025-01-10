@@ -4,10 +4,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:balearnpro2/screens/login_screen.dart';
 import 'package:balearnpro2/screens/lesson_screen.dart';
 import 'package:balearnpro2/screens/video_screen.dart';
-import 'package:balearnpro2/screens/add_contact_screen.dart';
+import 'package:balearnpro2/screens/kontak_screen.dart';
 import 'package:balearnpro2/screens/kalkulator_screen.dart';
 import 'package:balearnpro2/screens/lainnya_screen.dart';
-import 'package:balearnpro2/screens/kontak_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   final String uid;
@@ -19,10 +18,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String? username;
+  String username = "User";
   int _currentIndex = 0;
 
   late final List<Widget> _pages;
+
+  // Fungsi untuk membuat huruf depan kapital
+  String capitalize(String input) {
+    if (input.isEmpty) return input;
+    return input[0].toUpperCase() + input.substring(1).toLowerCase();
+  }
 
   Future<void> _fetchUsername() async {
     try {
@@ -30,20 +35,16 @@ class _HomeScreenState extends State<HomeScreen> {
           .collection('users')
           .doc(widget.uid)
           .get();
+
       if (userDoc.exists) {
         setState(() {
-          username = "${userDoc['firstName']} ${userDoc['lastName']}";
-        });
-      } else {
-        setState(() {
-          username = "User";
+          String firstName = userDoc['firstName'] ?? '';
+          String lastName = userDoc['lastName'] ?? '';
+          username = "${capitalize(firstName)} ${capitalize(lastName)}";
         });
       }
     } catch (e) {
       print("Error fetching username: $e");
-      setState(() {
-        username = "User";
-      });
     }
   }
 
@@ -54,9 +55,9 @@ class _HomeScreenState extends State<HomeScreen> {
     _pages = [
       HomeContent(
         onLessonTap: _handleLessonTap,
-        username: username ?? "Loading...",
+        username: username,
       ),
-      KontakScreen(currentUserId: widget.uid), // Memastikan currentUserId diteruskan
+      KontakScreen(currentUserId: widget.uid),
       KalkulatorScreen(),
       VideoScreen(),
       LainnyaScreen(),
@@ -112,7 +113,15 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: IndexedStack(
         index: _currentIndex,
-        children: _pages,
+        children: _pages.map((page) {
+          if (_currentIndex == 0) {
+            return HomeContent(
+              onLessonTap: _handleLessonTap,
+              username: username,
+            );
+          }
+          return page;
+        }).toList(),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
