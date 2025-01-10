@@ -4,9 +4,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:balearnpro2/screens/login_screen.dart';
 import 'package:balearnpro2/screens/lesson_screen.dart';
 import 'package:balearnpro2/screens/video_screen.dart';
-import 'package:balearnpro2/screens/kontak_screen.dart';
+import 'package:balearnpro2/screens/new_chat_screen.dart';
 import 'package:balearnpro2/screens/kalkulator_screen.dart';
 import 'package:balearnpro2/screens/lainnya_screen.dart';
+import 'package:balearnpro2/screens/kontak_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   final String uid;
@@ -53,9 +54,9 @@ class _HomeScreenState extends State<HomeScreen> {
     _pages = [
       HomeContent(
         onLessonTap: _handleLessonTap,
-        username: username ?? "User",
+        username: username ?? "Loading...",
       ),
-      KontakScreen(),
+      KontakScreen(currentUserId: widget.uid), // Memastikan currentUserId diteruskan
       KalkulatorScreen(),
       VideoScreen(),
       LainnyaScreen(),
