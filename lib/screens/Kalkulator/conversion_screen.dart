@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'area_conversion_screen.dart';
 import 'bmi_conversion_screen.dart';
 import 'data_conversion_screen.dart';
-import 'discount_conversion_screen.dart';
 import 'length_conversion_screen.dart';
 import 'mass_conversion_screen.dart';
 import 'number_system_conversion_screen.dart';
@@ -17,13 +15,8 @@ class ConversionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Daftar opsi konversi dengan label, ikon, dan halaman tujuan
+    // Daftar opsi konversi tanpa "Area"
     final List<Map<String, dynamic>> conversionOptions = [
-      {
-        "label": "Area",
-        "icon": Icons.square_foot,
-        "page": const AreaConversionScreen()
-      },
       {
         "label": "BMI",
         "icon": Icons.accessibility_new,
@@ -33,11 +26,6 @@ class ConversionScreen extends StatelessWidget {
         "label": "Data",
         "icon": Icons.data_usage,
         "page": const DataConversionScreen()
-      },
-      {
-        "label": "Diskon",
-        "icon": Icons.local_offer,
-        "page": const DiscountConversionScreen()
       },
       {
         "label": "Panjang",

@@ -1,39 +1,48 @@
 import 'package:flutter/material.dart';
 
 class CurrencyConversionScreen extends StatefulWidget {
-  const CurrencyConversionScreen({Key? key}) : super(key: key);
+  const CurrencyConversionScreen({super.key});
 
   @override
-  State<CurrencyConversionScreen> createState() => _CurrencyConversionScreenState();
+  _CurrencyConversionScreenState createState() =>
+      _CurrencyConversionScreenState();
 }
 
 class _CurrencyConversionScreenState extends State<CurrencyConversionScreen> {
   final TextEditingController _inputController = TextEditingController();
-  double _idrValue = 0.0;
-  double _usdValue = 0.0;
-  double _eurValue = 0.0;
+  double _convertedValue1 = 0.0;
+  double _convertedValue2 = 0.0;
 
-  final Map<String, double> exchangeRates = {
-    "IDR": 1.0,
-    "USD": 0.000066, // Contoh nilai tukar (IDR ke USD)
-    "EUR": 0.000057, // Contoh nilai tukar (IDR ke EUR)
+  String _selectedCurrencyFrom = "IDR";
+  String _selectedCurrencyTo = "USD";
+  String _selectedCurrencyTo2 = "EUR";
+
+  final Map<String, double> _conversionRates = {
+    "IDR to USD": 0.00007,
+    "IDR to EUR": 0.00006,
+    "USD to IDR": 14300.0,
+    "USD to EUR": 0.9,
+    "EUR to IDR": 15900.0,
+    "EUR to USD": 1.1,
+    "IDR to IDR": 1,
+    "USD to USD": 1,
+    "EUR to EUR": 1,
+    "JPY to IDR": 132.0,
+    "JPY to USD": 0.007,
+    "IDR to JPY": 0.0076,
+    "JPY to EUR": 0.0065,
+    // Tambahkan mata uang lainnya jika diperlukan
   };
 
   void _convert() {
     setState(() {
       double input = double.tryParse(_inputController.text) ?? 0.0;
-      _idrValue = input;
-      _usdValue = input * exchangeRates["USD"]!;
-      _eurValue = input * exchangeRates["EUR"]!;
-    });
-  }
 
-  void _clearInput() {
-    setState(() {
-      _inputController.clear();
-      _idrValue = 0.0;
-      _usdValue = 0.0;
-      _eurValue = 0.0;
+      String conversionKey1 = "$_selectedCurrencyFrom to $_selectedCurrencyTo";
+      String conversionKey2 = "$_selectedCurrencyFrom to $_selectedCurrencyTo2";
+
+      _convertedValue1 = input * (_conversionRates[conversionKey1] ?? 1.0);
+      _convertedValue2 = input * (_conversionRates[conversionKey2] ?? 1.0);
     });
   }
 
@@ -45,121 +54,105 @@ class _CurrencyConversionScreenState extends State<CurrencyConversionScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                _buildCurrencyDropdown("IDR"),
-                const Icon(Icons.arrow_forward),
-                _buildCurrencyDropdown("USD"),
-                const Icon(Icons.arrow_forward),
-                _buildCurrencyDropdown("EUR"),
-              ],
-            ),
-            const SizedBox(height: 16),
-            TextField(
-              controller: _inputController,
-              keyboardType: TextInputType.number,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: "Masukkan nilai (IDR)",
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: DropdownButton<String>(
+                      value: _selectedCurrencyFrom,
+                      isExpanded: true,
+                      items: const [
+                        DropdownMenuItem(value: "IDR", child: Text("IDR")),
+                        DropdownMenuItem(value: "USD", child: Text("USD")),
+                        DropdownMenuItem(value: "EUR", child: Text("EUR")),
+                        DropdownMenuItem(value: "JPY", child: Text("JPY")),
+                        DropdownMenuItem(value: "GBP", child: Text("GBP")),
+                        // Tambahkan lebih banyak mata uang jika diperlukan
+                      ],
+                      onChanged: (value) {
+                        setState(() {
+                          _selectedCurrencyFrom = value!;
+                        });
+                      },
+                    ),
+                  ),
+                  const Icon(Icons.arrow_forward),
+                  Expanded(
+                    child: DropdownButton<String>(
+                      value: _selectedCurrencyTo,
+                      isExpanded: true,
+                      items: const [
+                        DropdownMenuItem(value: "IDR", child: Text("IDR")),
+                        DropdownMenuItem(value: "USD", child: Text("USD")),
+                        DropdownMenuItem(value: "EUR", child: Text("EUR")),
+                        DropdownMenuItem(value: "JPY", child: Text("JPY")),
+                        DropdownMenuItem(value: "GBP", child: Text("GBP")),
+                        // Tambahkan lebih banyak mata uang jika diperlukan
+                      ],
+                      onChanged: (value) {
+                        setState(() {
+                          _selectedCurrencyTo = value!;
+                        });
+                      },
+                    ),
+                  ),
+                  const Icon(Icons.arrow_forward),
+                  Expanded(
+                    child: DropdownButton<String>(
+                      value: _selectedCurrencyTo2,
+                      isExpanded: true,
+                      items: const [
+                        DropdownMenuItem(value: "IDR", child: Text("IDR")),
+                        DropdownMenuItem(value: "USD", child: Text("USD")),
+                        DropdownMenuItem(value: "EUR", child: Text("EUR")),
+                        DropdownMenuItem(value: "JPY", child: Text("JPY")),
+                        DropdownMenuItem(value: "GBP", child: Text("GBP")),
+                        // Tambahkan lebih banyak mata uang jika diperlukan
+                      ],
+                      onChanged: (value) {
+                        setState(() {
+                          _selectedCurrencyTo2 = value!;
+                        });
+                      },
+                    ),
+                  ),
+                ],
               ),
-              onChanged: (value) {
-                _convert();
-              },
-            ),
-            const SizedBox(height: 16),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildResultRow("Rupiah Indonesia", _idrValue),
-                const SizedBox(height: 8),
-                _buildResultRow("Dolar Amerika Serikat", _usdValue),
-                const SizedBox(height: 8),
-                _buildResultRow("Euro", _eurValue),
-              ],
-            ),
-            const Spacer(),
-            _buildKeypad(),
-          ],
+              const SizedBox(height: 16),
+              TextField(
+                controller: _inputController,
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: "Masukkan nilai",
+                ),
+              ),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: _convert,
+                child: const Text("Konversi"),
+              ),
+              const SizedBox(height: 16),
+              Text(
+                "$_selectedCurrencyFrom: ${_inputController.text}",
+                style: const TextStyle(fontSize: 18),
+              ),
+              Text(
+                "$_selectedCurrencyTo: $_convertedValue1",
+                style: const TextStyle(fontSize: 18),
+              ),
+              Text(
+                "$_selectedCurrencyTo2: $_convertedValue2",
+                style: const TextStyle(fontSize: 18),
+              ),
+            ],
+          ),
         ),
       ),
-    );
-  }
-
-  Widget _buildCurrencyDropdown(String currency) {
-    return DropdownButton<String>(
-      value: currency,
-      items: const [
-        DropdownMenuItem(value: "IDR", child: Text("IDR")),
-        DropdownMenuItem(value: "USD", child: Text("USD")),
-        DropdownMenuItem(value: "EUR", child: Text("EUR")),
-      ],
-      onChanged: (value) {
-        // Untuk saat ini dropdown hanya menampilkan nilai statis
-      },
-    );
-  }
-
-  Widget _buildResultRow(String label, double value) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          label,
-          style: const TextStyle(fontSize: 16),
-        ),
-        Text(
-          value.toStringAsFixed(2),
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildKeypad() {
-    return Column(
-      children: [
-        _buildKeypadRow(["7", "8", "9"]),
-        const SizedBox(height: 8),
-        _buildKeypadRow(["4", "5", "6"]),
-        const SizedBox(height: 8),
-        _buildKeypadRow(["1", "2", "3"]),
-        const SizedBox(height: 8),
-        _buildKeypadRow(["0", ",", "AC"]),
-      ],
-    );
-  }
-
-  Widget _buildKeypadRow(List<String> buttons) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: buttons.map((button) {
-        return ElevatedButton(
-          onPressed: () {
-            if (button == "AC") {
-              _clearInput();
-            } else {
-              setState(() {
-                _inputController.text += button;
-                _convert();
-              });
-            }
-          },
-          style: ElevatedButton.styleFrom(
-            backgroundColor: button == "AC" ? Colors.orange : Colors.white,
-            foregroundColor: button == "AC" ? Colors.white : Colors.black,
-            shape: const CircleBorder(),
-            padding: const EdgeInsets.all(20),
-          ),
-          child: Text(
-            button,
-            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
-        );
-      }).toList(),
     );
   }
 }

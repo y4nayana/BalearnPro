@@ -16,6 +16,11 @@ class _TimeConversionScreenState extends State<TimeConversionScreen> {
   final Map<String, double> timeConversionFactors = {
     "mnt->d": 60.0, // Menit ke detik
     "d->mnt": 1 / 60.0, // Detik ke menit
+    "mnt->jam": 1 / 60.0, // Menit ke jam
+    "jam->mnt": 60.0, // Jam ke menit
+    "d->jam": 1 / 3600.0, // Detik ke jam
+    "jam->d": 3600.0, // Jam ke detik
+    "jam->jam": 1.0, // Jam ke jam
     "mnt->mnt": 1.0, // Menit ke menit
     "d->d": 1.0, // Detik ke detik
   };
@@ -69,6 +74,7 @@ class _TimeConversionScreenState extends State<TimeConversionScreen> {
                   items: const [
                     DropdownMenuItem(value: "mnt", child: Text("Menit")),
                     DropdownMenuItem(value: "d", child: Text("Detik")),
+                    DropdownMenuItem(value: "jam", child: Text("Jam")),
                   ],
                   onChanged: (value) {
                     setState(() {
@@ -82,6 +88,7 @@ class _TimeConversionScreenState extends State<TimeConversionScreen> {
                   items: const [
                     DropdownMenuItem(value: "mnt", child: Text("Menit")),
                     DropdownMenuItem(value: "d", child: Text("Detik")),
+                    DropdownMenuItem(value: "jam", child: Text("Jam")),
                   ],
                   onChanged: (value) {
                     setState(() {
@@ -119,7 +126,7 @@ class _TimeConversionScreenState extends State<TimeConversionScreen> {
         const SizedBox(height: 8),
         _buildKeypadRow(["1", "2", "3"]),
         const SizedBox(height: 8),
-        _buildKeypadRow(["0", ",", "AC"]),
+        _buildKeypadRow(["0", ".", "AC"]),
       ],
     );
   }
