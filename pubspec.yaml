@@ -35,6 +35,8 @@ dependencies:
   cloud_firestore: ^5.4.0
   font_awesome_flutter: ^10.8.0
   math_expressions: ^2.1.1
+  youtube_player_flutter: ^9.1.1
+
 
 
 
