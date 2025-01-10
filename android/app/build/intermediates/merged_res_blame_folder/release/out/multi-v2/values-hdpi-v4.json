@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.balearnpro.app-mergeReleaseResources-47:/values-hdpi-v4/values-hdpi-v4.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\KRISNA\\.gradle\\caches\\transforms-3\\1b7721f3354af595d4450da455ce4ae7\\transformed\\appcompat-1.6.1\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "6",
+                        "endColumns": "13",
+                        "endOffsets": "327"
+                    }
+                }
+            ]
+        }
+    ]
+}

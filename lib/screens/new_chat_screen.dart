@@ -40,7 +40,7 @@ class NewChatScreen extends StatelessWidget {
                   final chatId = await createOrGetChat(
                       currentUserId, contact.id);
 
-                  Navigator.push(
+                  Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                       builder: (context) => ChatScreen(

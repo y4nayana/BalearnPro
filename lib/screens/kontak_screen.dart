@@ -3,20 +3,20 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'chat_screen.dart';
 import 'new_chat_screen.dart';
 
-
 class KontakScreen extends StatelessWidget {
   final String currentUserId;
 
   KontakScreen({required this.currentUserId});
 
+  // Fungsi untuk memformat timestamp menjadi string yang user-friendly
   String formatTimestamp(Timestamp timestamp) {
     final DateTime date = timestamp.toDate();
     final now = DateTime.now();
 
     if (date.day == now.day && date.month == now.month && date.year == now.year) {
-      return "${date.hour}:${date.minute.toString().padLeft(2, '0')}"; // Jam dan menit
+      return "${date.hour}:${date.minute.toString().padLeft(2, '0')}"; // Format waktu jika hari ini
     } else {
-      return "${date.day}/${date.month}/${date.year}"; // Tanggal
+      return "${date.day}/${date.month}/${date.year}"; // Format tanggal
     }
   }
 
@@ -29,8 +29,8 @@ class KontakScreen extends StatelessWidget {
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection('chats')
-            .where('users', arrayContains: currentUserId)
-            .orderBy('timestamp', descending: true)
+            .where('users', arrayContains: currentUserId) // Filter berdasarkan pengguna saat ini
+            .orderBy('timestamp', descending: true) // Urutkan berdasarkan waktu terbaru
             .snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
@@ -50,10 +50,7 @@ class KontakScreen extends StatelessWidget {
                   .firstWhere((uid) => uid != currentUserId);
 
               return FutureBuilder<DocumentSnapshot>(
-                future: FirebaseFirestore.instance
-                    .collection('users')
-                    .doc(otherUserId)
-                    .get(),
+                future: FirebaseFirestore.instance.collection('users').doc(otherUserId).get(),
                 builder: (context, userSnapshot) {
                   if (!userSnapshot.hasData) {
                     return ListTile(
@@ -62,11 +59,10 @@ class KontakScreen extends StatelessWidget {
                   }
 
                   final userData = userSnapshot.data!;
-                  final userName = userData['firstName'] +
-                      ' ' +
-                      (userData['lastName'] ?? '');
+                  final userName = '${userData['firstName']} ${userData['lastName'] ?? ''}';
 
-                  final lastMessage = chat['lastMessage'] ?? '';
+                  // Mendapatkan lastMessage dan timestamp
+                  final lastMessage = chat['lastMessage'] ?? 'No messages yet';
                   final timestamp = chat['timestamp'] as Timestamp;
 
                   return ListTile(

@@ -46,6 +46,12 @@ class ChatScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Chat with $otherUserName'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context); // Kembali ke layar sebelumnya
+          },
+        ),
       ),
       body: Column(
         children: [
