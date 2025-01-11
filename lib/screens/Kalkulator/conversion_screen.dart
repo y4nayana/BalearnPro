@@ -108,7 +108,7 @@ class ConversionScreen extends StatelessWidget {
                 Icon(
                   option["icon"],
                   size: 40,
-                  color: Colors.orange,
+                  color: Colors.blue, // Warna ikon diubah menjadi biru
                 ),
                 const SizedBox(height: 8),
                 Text(

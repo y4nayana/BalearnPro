@@ -9,6 +9,7 @@ class VolumeConversionScreen extends StatefulWidget {
 
 class _VolumeConversionScreenState extends State<VolumeConversionScreen> {
   final TextEditingController _inputController = TextEditingController();
+  String _inputValue = '';
   double _convertedValue = 0.0;
   String _selectedUnitFrom = "m³";
   String _selectedUnitTo = "cm³";
@@ -16,13 +17,19 @@ class _VolumeConversionScreenState extends State<VolumeConversionScreen> {
   final Map<String, double> volumeConversionFactors = {
     "m³->cm³": 1000000.0, // Meter kubik ke Sentimeter kubik
     "cm³->m³": 1 / 1000000.0, // Sentimeter kubik ke Meter kubik
+    "m³->L": 1000.0, // Meter kubik ke Liter
+    "L->m³": 1 / 1000.0, // Liter ke Meter kubik
+    "L->mL": 1000.0, // Liter ke Milliliter
+    "mL->L": 1 / 1000.0, // Milliliter ke Liter
     "m³->m³": 1.0, // Meter kubik ke Meter kubik
     "cm³->cm³": 1.0, // Sentimeter kubik ke Sentimeter kubik
+    "L->L": 1.0, // Liter ke Liter
+    "mL->mL": 1.0, // Milliliter ke Milliliter
   };
 
   void _convert() {
     setState(() {
-      double input = double.tryParse(_inputController.text) ?? 0.0;
+      double input = double.tryParse(_inputValue) ?? 0.0;
       String key = "$_selectedUnitFrom->$_selectedUnitTo";
 
       _convertedValue = input * (volumeConversionFactors[key] ?? 1.0);
@@ -31,17 +38,32 @@ class _VolumeConversionScreenState extends State<VolumeConversionScreen> {
 
   void _clearInput() {
     setState(() {
-      _inputController.clear();
+      _inputValue = '';
       _convertedValue = 0.0;
     });
   }
 
+  void _updateInput(String value) {
+    setState(() {
+      if (value == "." && _inputValue.contains(".")) return; // Mencegah koma ganda
+      _inputValue += value;
+    });
+    _convert();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final List<String> units = ["m³", "cm³", "L", "mL"]; // Tambahan opsi unit
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Volume"),
+        backgroundColor: Colors.white,
+        title: const Text(
+          "Volume",
+          style: TextStyle(color: Colors.black),
+        ),
+        iconTheme: const IconThemeData(color: Colors.black),
       ),
+      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -50,60 +72,83 @@ class _VolumeConversionScreenState extends State<VolumeConversionScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                DropdownButton<String>(
-                  value: _selectedUnitFrom,
-                  items: const [
-                    DropdownMenuItem(value: "m³", child: Text("Meter kubik")),
-                    DropdownMenuItem(value: "cm³", child: Text("Sentimeter kubik")),
-                  ],
-                  onChanged: (value) {
-                    setState(() {
-                      _selectedUnitFrom = value!;
-                    });
-                  },
+                Expanded(
+                  child: DropdownButton<String>(
+                    value: _selectedUnitFrom,
+                    dropdownColor: Colors.white,
+                    items: units
+                        .map(
+                          (unit) => DropdownMenuItem(
+                            value: unit,
+                            child: Text(unit),
+                          ),
+                        )
+                        .toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        _selectedUnitFrom = value!;
+                      });
+                      _convert();
+                    },
+                  ),
                 ),
-                const Icon(Icons.arrow_forward),
-                DropdownButton<String>(
-                  value: _selectedUnitTo,
-                  items: const [
-                    DropdownMenuItem(value: "m³", child: Text("Meter kubik")),
-                    DropdownMenuItem(value: "cm³", child: Text("Sentimeter kubik")),
-                  ],
-                  onChanged: (value) {
-                    setState(() {
-                      _selectedUnitTo = value!;
-                    });
-                  },
+                const Icon(Icons.swap_horiz, color: Colors.black),
+                Expanded(
+                  child: DropdownButton<String>(
+                    value: _selectedUnitTo,
+                    dropdownColor: Colors.white,
+                    items: units
+                        .map(
+                          (unit) => DropdownMenuItem(
+                            value: unit,
+                            child: Text(unit),
+                          ),
+                        )
+                        .toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        _selectedUnitTo = value!;
+                      });
+                      _convert();
+                    },
+                  ),
                 ),
               ],
             ),
             const SizedBox(height: 16),
-            TextField(
-              controller: _inputController,
-              keyboardType: TextInputType.number,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: "Masukkan nilai",
-              ),
-              onChanged: (value) {
-                _convert();
-              },
-            ),
-            const SizedBox(height: 16),
-            Center(
-              child: Column(
-                children: [
-                  Text(
-                    "${_inputController.text} $_selectedUnitFrom",
-                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Container(
+                    alignment: Alignment.centerLeft,
+                    padding: const EdgeInsets.all(8.0),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Text(
+                      _inputValue.isEmpty ? "0" : _inputValue,
+                      style: const TextStyle(fontSize: 24),
+                    ),
                   ),
-                  const SizedBox(height: 8),
-                  Text(
-                    "${_convertedValue.toStringAsFixed(2)} $_selectedUnitTo",
-                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: Container(
+                    alignment: Alignment.centerRight,
+                    padding: const EdgeInsets.all(8.0),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Text(
+                      _convertedValue.toStringAsFixed(2),
+                      style: const TextStyle(fontSize: 24),
+                    ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
             const Spacer(),
             _buildKeypad(),
@@ -114,46 +159,62 @@ class _VolumeConversionScreenState extends State<VolumeConversionScreen> {
   }
 
   Widget _buildKeypad() {
-    return Column(
-      children: [
-        _buildKeypadRow(["7", "8", "9"]),
-        const SizedBox(height: 8),
-        _buildKeypadRow(["4", "5", "6"]),
-        const SizedBox(height: 8),
-        _buildKeypadRow(["1", "2", "3"]),
-        const SizedBox(height: 8),
-        _buildKeypadRow(["0", ",", "AC"]),
-      ],
-    );
-  }
+    return GridView.builder(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 4,
+        crossAxisSpacing: 16,
+        mainAxisSpacing: 16,
+      ),
+      shrinkWrap: true,
+      itemCount: 20, // Total tombol: 0-9, AC, dan lainnya
+      itemBuilder: (context, index) {
+        final keys = [
+          "C", "⌫", "%", "÷",
+          "7", "8", "9", "×",
+          "4", "5", "6", "−",
+          "1", "2", "3", "+",
+          "00", "0", ".", "=",
+        ];
+        final key = keys[index];
 
-  Widget _buildKeypadRow(List<String> buttons) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: buttons.map((button) {
         return ElevatedButton(
           onPressed: () {
-            if (button == "AC") {
+            if (key == "C") {
               _clearInput();
-            } else {
+            } else if (key == "⌫") {
               setState(() {
-                _inputController.text += button;
-                _convert();
+                if (_inputValue.isNotEmpty) {
+                  _inputValue = _inputValue.substring(0, _inputValue.length - 1);
+                }
               });
+              _convert();
+            } else if (key == "=") {
+              _convert();
+            } else {
+              _updateInput(key);
             }
           },
           style: ElevatedButton.styleFrom(
-            backgroundColor: button == "AC" ? Colors.orange : Colors.white,
-            foregroundColor: button == "AC" ? Colors.white : Colors.black,
-            shape: const CircleBorder(),
-            padding: const EdgeInsets.all(20),
+            backgroundColor: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
           ),
           child: Text(
-            button,
-            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            key,
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: (key == "C" || key == "⌫" || key == "%" || 
+                            key == "=" || key == "÷" || key == "+" ||
+                            key == "×" || key == "−")
+                  ? Colors.blue
+                  : Colors.black,
+            ),
           ),
         );
-      }).toList(),
+      },
     );
   }
 }

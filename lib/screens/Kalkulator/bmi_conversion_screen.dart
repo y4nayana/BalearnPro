@@ -72,19 +72,27 @@ class _BMIConversionScreenState extends State<BMIConversionScreen> {
               ),
             ),
             const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ElevatedButton(
-                  onPressed: _calculateBMI,
-                  child: const Text("GO"),
+            ElevatedButton(
+              onPressed: () {
+                _calculateBMI();
+                _resetFields();
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                  side: const BorderSide(color: Colors.grey), // Border garis abu-abu
                 ),
-                ElevatedButton(
-                  onPressed: _resetFields,
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                  child: const Text("AC"),
+              ),
+              child: const Text(
+                "Konversi",
+                style: TextStyle(
+                  color: Colors.blue, // Warna teks biru
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
                 ),
-              ],
+              ),
             ),
             const SizedBox(height: 16),
             Center(
