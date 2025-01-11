@@ -138,7 +138,10 @@ class _NoteScreenState extends State<NoteScreen> {
           'Tambah Catatan',
           style: TextStyle(color: Colors.white), // Warna teks tombol diubah menjadi putih
         ),
-        icon: Icon(Icons.add),
+        icon: Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
         backgroundColor: Colors.redAccent,
       ),
     );

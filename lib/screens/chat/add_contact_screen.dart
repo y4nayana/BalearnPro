@@ -17,7 +17,7 @@ class AddContactScreen extends StatelessWidget {
 
     if (existingContact.docs.isNotEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Contact already added.')),
+        SnackBar(content: Text('$name sudah ditambahkan sebelumnya.')),
       );
       return;
     }
@@ -31,7 +31,7 @@ class AddContactScreen extends StatelessWidget {
     });
 
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Contact added successfully!')),
+      SnackBar(content: Text('Kontak $name berhasil ditambahkan!')),
     );
 
     Navigator.pop(context);
@@ -44,68 +44,84 @@ class AddContactScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Add Contact',
+          'Tambah Kontak',
           style: theme.textTheme.titleLarge?.copyWith(color: Colors.white),
         ),
         backgroundColor: Colors.redAccent,
         elevation: 0,
       ),
-      body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection('users').snapshots(),
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) {
-            return Center(child: CircularProgressIndicator());
-          }
+      body: Container(
+        color: Colors.grey[100],
+        child: StreamBuilder<QuerySnapshot>(
+          stream: FirebaseFirestore.instance.collection('users').snapshots(),
+          builder: (context, snapshot) {
+            if (!snapshot.hasData) {
+              return Center(child: CircularProgressIndicator());
+            }
 
-          final users = snapshot.data!.docs;
+            final users = snapshot.data!.docs;
 
-          if (users.isEmpty) {
-            return Center(
-              child: Text(
-                'No users available to add.',
-                style: theme.textTheme.bodyLarge?.copyWith(color: Colors.grey),
-                textAlign: TextAlign.center,
-              ),
-            );
-          }
-
-          return ListView.builder(
-            padding: const EdgeInsets.all(16),
-            itemCount: users.length,
-            itemBuilder: (context, index) {
-              final user = users[index];
-
-              // Jangan tampilkan pengguna saat ini
-              if (user.id == currentUserId) return Container();
-
-              final name = '${user['firstName']} ${user['lastName'] ?? ''}';
-              final email = user['email'];
-
-              return Card(
-                margin: const EdgeInsets.only(bottom: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                elevation: 2,
-                child: ListTile(
-                  contentPadding: const EdgeInsets.all(16),
-                  title: Text(
-                    name,
-                    style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
-                  ),
-                  subtitle: Text(
-                    email,
-                    style: theme.textTheme.bodyLarge?.copyWith(color: Colors.grey[600]),
-                  ),
-                  trailing: Icon(Icons.person_add, color: Colors.greenAccent),
-                  onTap: () {
-                    addContact(context, user.id, name, email);
-                  },
+            if (users.isEmpty) {
+              return Center(
+                child: Text(
+                  'Tidak ada pengguna yang tersedia untuk ditambahkan.',
+                  style: theme.textTheme.bodyLarge?.copyWith(color: Colors.grey),
+                  textAlign: TextAlign.center,
                 ),
               );
-            },
-          );
-        },
+            }
+
+            return ListView.builder(
+              padding: const EdgeInsets.all(16),
+              itemCount: users.length,
+              itemBuilder: (context, index) {
+                final user = users[index];
+
+                // Jangan tampilkan pengguna saat ini
+                if (user.id == currentUserId) return Container();
+
+                final name = '${user['firstName']} ${user['lastName'] ?? ''}';
+                final email = user['email'];
+
+                return Card(
+                  margin: const EdgeInsets.only(bottom: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  elevation: 2,
+                  child: ListTile(
+                    contentPadding: const EdgeInsets.all(16),
+                    title: Text(
+                      name,
+                      style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: Text(
+                      email,
+                      style: theme.textTheme.bodyLarge?.copyWith(color: Colors.grey[600]),
+                    ),
+                    trailing: StreamBuilder<QuerySnapshot>(
+                      stream: FirebaseFirestore.instance
+                          .collection('contacts')
+                          .where('addedBy', isEqualTo: currentUserId)
+                          .where('contactId', isEqualTo: user.id)
+                          .snapshots(),
+                      builder: (context, contactSnapshot) {
+                        if (contactSnapshot.hasData &&
+                            contactSnapshot.data!.docs.isNotEmpty) {
+                          return Icon(Icons.check, color: Colors.green);
+                        }
+                        return Icon(Icons.person_add, color: Colors.greenAccent);
+                      },
+                    ),
+                    onTap: () {
+                      addContact(context, user.id, name, email);
+                    },
+                  ),
+                );
+              },
+            );
+          },
+        ),
       ),
     );
   }

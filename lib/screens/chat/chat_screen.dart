@@ -68,7 +68,7 @@ class ChatScreen extends StatelessWidget {
                   .collection('chats')
                   .doc(chatId)
                   .collection('messages')
-                  .orderBy('timestamp', descending: true)
+                  .orderBy('timestamp') // Urutan ascending
                   .snapshots(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
@@ -77,8 +77,20 @@ class ChatScreen extends StatelessWidget {
 
                 final messages = snapshot.data!.docs;
 
+                if (messages.isEmpty) {
+                  return Center(
+                    child: Text(
+                      'No messages yet. Start the conversation!',
+                      style: theme.textTheme.bodyLarge?.copyWith(
+                        color: Colors.grey,
+                      ),
+                    ),
+                  );
+                }
+
                 return ListView.builder(
-                  reverse: true,
+                  padding: EdgeInsets.all(10), // Tambahkan padding
+                  shrinkWrap: true, // Hanya gunakan ruang secukupnya
                   itemCount: messages.length,
                   itemBuilder: (context, index) {
                     final message = messages[index];

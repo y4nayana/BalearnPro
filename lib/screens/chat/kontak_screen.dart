@@ -23,14 +23,34 @@ class KontakScreen extends StatelessWidget {
       }
     }
 
-    // Jika belum ada, buat dokumen chat baru
+    // Jika chat tidak ditemukan, buat dokumen chat baru
     final newChat = await chatRef.add({
-      'users': [currentUserId, otherUserId],
+      'users': [currentUserId, otherUserId], // Array berisi dua user ID
       'lastMessage': '',
       'timestamp': FieldValue.serverTimestamp(),
     });
 
-    return newChat.id;
+    return newChat.id; // Kembalikan ID chat baru
+  }
+
+  Future<void> deleteContact(String contactId) async {
+    try {
+      final contactRef = FirebaseFirestore.instance.collection('contacts');
+
+      // Hapus kontak berdasarkan contactId dan currentUserId
+      final query = await contactRef
+          .where('addedBy', isEqualTo: currentUserId)
+          .where('contactId', isEqualTo: contactId)
+          .get();
+
+      for (var doc in query.docs) {
+        await doc.reference.delete();
+      }
+
+      print('Kontak berhasil dihapus.');
+    } catch (e) {
+      print('Error saat menghapus kontak: $e');
+    }
   }
 
   @override
@@ -38,57 +58,52 @@ class KontakScreen extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Scaffold(
-      body: SafeArea(
-        child: StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance
-              .collection('contacts')
-              .where('addedBy', isEqualTo: currentUserId)
-              .snapshots(),
-          builder: (context, snapshot) {
-            if (!snapshot.hasData) {
-              return Center(child: CircularProgressIndicator());
-            }
+      body: StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance
+            .collection('contacts')
+            .where('addedBy', isEqualTo: currentUserId)
+            .snapshots(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return Center(child: CircularProgressIndicator());
+          }
 
-            final contacts = snapshot.data!.docs;
+          final contacts = snapshot.data!.docs;
 
-            if (contacts.isEmpty) {
-              return Center(
-                child: Text(
-                  'No contacts added yet.',
-                  style: theme.textTheme.bodyLarge?.copyWith(color: Colors.grey),
-                  textAlign: TextAlign.center,
+          if (contacts.isEmpty) {
+            return Center(
+              child: Text(
+                'Tidak ada kontak yang tersedia.',
+                style: theme.textTheme.bodyLarge?.copyWith(color: Colors.grey),
+                textAlign: TextAlign.center,
+              ),
+            );
+          }
+
+          return ListView.builder(
+            padding: const EdgeInsets.all(16),
+            itemCount: contacts.length,
+            itemBuilder: (context, index) {
+              final contact = contacts[index];
+              final contactId = contact['contactId'];
+              final name = contact['name'];
+
+              return Card(
+                margin: const EdgeInsets.only(bottom: 16),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
                 ),
-              );
-            }
-
-            return ListView.builder(
-              padding: const EdgeInsets.all(16),
-              itemCount: contacts.length,
-              itemBuilder: (context, index) {
-                final contact = contacts[index];
-                final contactId = contact['contactId'];
-                final name = contact['name'];
-                final email = contact['email'];
-
-                return Card(
-                  margin: const EdgeInsets.only(bottom: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                elevation: 2,
+                child: ListTile(
+                  contentPadding: const EdgeInsets.all(16),
+                  title: Text(
+                    name,
+                    style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
                   ),
-                  elevation: 2,
-                  child: ListTile(
-                    contentPadding: const EdgeInsets.all(16),
-                    title: Text(
-                      name,
-                      style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
-                    ),
-                    subtitle: Text(
-                      email,
-                      style: theme.textTheme.bodyLarge?.copyWith(color: Colors.grey[600]),
-                    ),
-                    trailing: Icon(Icons.chat, color: Colors.blueAccent),
-                    onTap: () async {
-                      // Dapatkan atau buat chatId untuk kontak ini
+                  trailing: Icon(Icons.chat, color: Colors.blueAccent),
+                  onTap: () async {
+                    try {
+                      // Buat atau dapatkan chatId
                       final chatId = await createOrGetChat(contactId);
 
                       // Navigasikan ke ChatScreen
@@ -102,20 +117,56 @@ class KontakScreen extends StatelessWidget {
                           ),
                         ),
                       );
-                    },
-                  ),
-                );
-              },
-            );
-          },
-        ),
+                    } catch (e) {
+                      print('Error creating or getting chat: $e');
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Terjadi kesalahan. Coba lagi nanti.')),
+                      );
+                    }
+                  },
+                  onLongPress: () async {
+                    final confirm = await showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text('Hapus Kontak'),
+                          content: Text('Apakah Anda yakin ingin menghapus kontak ini?'),
+                          actions: [
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, false),
+                              child: Text('Batal'),
+                            ),
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, true),
+                              child: Text('Hapus'),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+
+                    if (confirm == true) {
+                      await deleteContact(contactId); // Hapus kontak untuk pengguna ini
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Kontak berhasil dihapus.')),
+                      );
+                    }
+                  },
+                ),
+              );
+            },
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton.extended(
         label: Text(
-          'Add Contact',
+          'Tambah Kontak',
           style: TextStyle(color: Colors.white),
         ),
-        icon: Icon(Icons.person_add),
+        icon: Icon(
+          Icons.person_add,
+          color: Colors.white,
+        ),
         backgroundColor: Colors.redAccent,
         onPressed: () {
           Navigator.push(

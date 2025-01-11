@@ -6,7 +6,7 @@ import 'package:balearnpro2/screens/lesson_screen.dart';
 import 'package:balearnpro2/screens/video_screen.dart';
 import 'package:balearnpro2/screens/chat/kontak_screen.dart';
 import 'package:balearnpro2/screens/Kalkulator/kalkulator_screen.dart';
-import 'package:balearnpro2/screens/note_screen.dart';
+import 'package:balearnpro2/screens/Notes/note_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   final String uid;
@@ -86,13 +86,13 @@ class _HomeScreenState extends State<HomeScreen> {
       case 0:
         return "Home";
       case 1:
-        return "Kontak";
+        return "Chat";
       case 2:
         return "Kalkulator";
       case 3:
         return "Video";
       case 4:
-        return "Lainnya";
+        return "Catatan";
       default:
         return "Home";
     }
@@ -138,8 +138,8 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.contact_page),
-            label: 'Kontak',
+            icon: Icon(Icons.chat),
+            label: 'Chat',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.calculate),
@@ -150,8 +150,8 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'Video',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.more_horiz),
-            label: 'Lainnya',
+            icon: Icon(Icons.note_alt),
+            label: 'Catatan',
           ),
         ],
       ),
