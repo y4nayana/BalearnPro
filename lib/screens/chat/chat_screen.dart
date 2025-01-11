@@ -43,9 +43,15 @@ class ChatScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Chat with $otherUserName'),
+        title: Text(
+          otherUserName,
+          style: theme.textTheme.titleLarge?.copyWith(color: Colors.white),
+        ),
+        backgroundColor: Colors.redAccent,
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
@@ -55,6 +61,7 @@ class ChatScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
+          // Bagian untuk daftar pesan
           Expanded(
             child: StreamBuilder<QuerySnapshot>(
               stream: FirebaseFirestore.instance
@@ -78,18 +85,34 @@ class ChatScreen extends StatelessWidget {
                     final isMe = message['senderId'] ==
                         FirebaseAuth.instance.currentUser!.uid;
 
-                    return Align(
-                      alignment:
-                          isMe ? Alignment.centerRight : Alignment.centerLeft,
-                      child: Container(
-                        margin: EdgeInsets.symmetric(
-                            vertical: 5, horizontal: 10),
-                        padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          color: isMe ? Colors.blue[100] : Colors.grey[300],
-                          borderRadius: BorderRadius.circular(8),
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 5, horizontal: 10),
+                      child: Align(
+                        alignment:
+                            isMe ? Alignment.centerRight : Alignment.centerLeft,
+                        child: Container(
+                          padding: EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: isMe
+                                ? Colors.blueAccent.withOpacity(0.8)
+                                : Colors.grey[300],
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(12),
+                              topRight: Radius.circular(12),
+                              bottomLeft:
+                                  isMe ? Radius.circular(12) : Radius.zero,
+                              bottomRight:
+                                  isMe ? Radius.zero : Radius.circular(12),
+                            ),
+                          ),
+                          child: Text(
+                            message['text'],
+                            style: theme.textTheme.bodyLarge?.copyWith(
+                              color: isMe ? Colors.white : Colors.black87,
+                            ),
+                          ),
                         ),
-                        child: Text(message['text']),
                       ),
                     );
                   },
@@ -97,6 +120,8 @@ class ChatScreen extends StatelessWidget {
               },
             ),
           ),
+
+          // Bagian untuk input pesan
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
@@ -105,16 +130,28 @@ class ChatScreen extends StatelessWidget {
                   child: TextField(
                     controller: _messageController,
                     decoration: InputDecoration(
-                      labelText: 'Enter your message...',
-                      border: OutlineInputBorder(),
+                      hintText: 'Enter your message...',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      contentPadding:
+                          EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                     ),
                   ),
                 ),
-                IconButton(
-                  icon: Icon(Icons.send),
-                  onPressed: () {
+                SizedBox(width: 8),
+                GestureDetector(
+                  onTap: () {
                     sendMessage(_messageController.text.trim());
                   },
+                  child: CircleAvatar(
+                    backgroundColor: Colors.redAccent,
+                    radius: 24,
+                    child: Icon(
+                      Icons.send,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
               ],
             ),

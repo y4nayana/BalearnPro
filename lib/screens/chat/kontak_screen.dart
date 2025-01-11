@@ -35,60 +35,88 @@ class KontakScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Contacts'),
-      ),
-      body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance
-            .collection('contacts')
-            .where('addedBy', isEqualTo: currentUserId)
-            .snapshots(),
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) {
-            return Center(child: CircularProgressIndicator());
-          }
+      body: SafeArea(
+        child: StreamBuilder<QuerySnapshot>(
+          stream: FirebaseFirestore.instance
+              .collection('contacts')
+              .where('addedBy', isEqualTo: currentUserId)
+              .snapshots(),
+          builder: (context, snapshot) {
+            if (!snapshot.hasData) {
+              return Center(child: CircularProgressIndicator());
+            }
 
-          final contacts = snapshot.data!.docs;
+            final contacts = snapshot.data!.docs;
 
-          if (contacts.isEmpty) {
-            return Center(child: Text('No contacts added yet.'));
-          }
-
-          return ListView.builder(
-            itemCount: contacts.length,
-            itemBuilder: (context, index) {
-              final contact = contacts[index];
-              final contactId = contact['contactId'];
-              final name = contact['name'];
-              final email = contact['email'];
-
-              return ListTile(
-                title: Text(name),
-                subtitle: Text(email),
-                onTap: () async {
-                  // Dapatkan atau buat chatId untuk kontak ini
-                  final chatId = await createOrGetChat(contactId);
-
-                  // Navigasikan ke ChatScreen
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ChatScreen(
-                        chatId: chatId,
-                        otherUserId: contactId,
-                        otherUserName: name,
-                      ),
-                    ),
-                  );
-                },
+            if (contacts.isEmpty) {
+              return Center(
+                child: Text(
+                  'No contacts added yet.',
+                  style: theme.textTheme.bodyLarge?.copyWith(color: Colors.grey),
+                  textAlign: TextAlign.center,
+                ),
               );
-            },
-          );
-        },
+            }
+
+            return ListView.builder(
+              padding: const EdgeInsets.all(16),
+              itemCount: contacts.length,
+              itemBuilder: (context, index) {
+                final contact = contacts[index];
+                final contactId = contact['contactId'];
+                final name = contact['name'];
+                final email = contact['email'];
+
+                return Card(
+                  margin: const EdgeInsets.only(bottom: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  elevation: 2,
+                  child: ListTile(
+                    contentPadding: const EdgeInsets.all(16),
+                    title: Text(
+                      name,
+                      style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: Text(
+                      email,
+                      style: theme.textTheme.bodyLarge?.copyWith(color: Colors.grey[600]),
+                    ),
+                    trailing: Icon(Icons.chat, color: Colors.blueAccent),
+                    onTap: () async {
+                      // Dapatkan atau buat chatId untuk kontak ini
+                      final chatId = await createOrGetChat(contactId);
+
+                      // Navigasikan ke ChatScreen
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ChatScreen(
+                            chatId: chatId,
+                            otherUserId: contactId,
+                            otherUserName: name,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                );
+              },
+            );
+          },
+        ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+      floatingActionButton: FloatingActionButton.extended(
+        label: Text(
+          'Add Contact',
+          style: TextStyle(color: Colors.white),
+        ),
+        icon: Icon(Icons.person_add),
+        backgroundColor: Colors.redAccent,
         onPressed: () {
           Navigator.push(
             context,
