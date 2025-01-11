@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.balearnpro.app-mergeReleaseResources-50:/values-en-rAU/values-en-rAU.xml",
+            "outputFile": "com.balearnpro.app-mergeReleaseResources-52:/values-en-rAU/values-en-rAU.xml",
             "map": [
                 {
                     "source": "C:\\Users\\KRISNA\\.gradle\\caches\\transforms-3\\3abf422e6f8fd30b157d574ac1de0372\\transformed\\jetified-credentials-1.2.0-rc01\\res\\values-en-rAU\\values-en-rAU.xml",

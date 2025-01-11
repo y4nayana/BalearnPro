@@ -54,8 +54,8 @@
 33        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 33-->[androidx.core:core:1.13.1] C:\Users\KRISNA\.gradle\caches\transforms-3\5008fb5c154386e5f1e83ef807655b52\transformed\core-1.13.1\AndroidManifest.xml:28:18-86
 34        android:extractNativeLibs="false"
-35        android:icon="@mipmap/ic_launcher"
-35-->D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\src\main\AndroidManifest.xml:6:9-43
+35        android:icon="@drawable/logo"
+35-->D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\src\main\AndroidManifest.xml:6:9-38
 36        android:label="BalearnPro" >
 36-->D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\src\main\AndroidManifest.xml:5:9-35
 37        <activity

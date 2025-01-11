@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'home_screen.dart';  // Pastikan sudah sesuai
+import 'home_screen.dart'; // Pastikan sudah sesuai
 import 'Login/login_screen.dart'; // Pastikan sudah sesuai
 
 class SplashScreen extends StatefulWidget {
@@ -9,28 +9,27 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
   void initState() {
     super.initState();
-    _checkLoginStatus(context);  // Memanggil fungsi cek login status saat widget pertama kali di-load
+    _checkLoginStatus(context); // Memeriksa status login saat splash screen ditampilkan
   }
 
   // Fungsi untuk memeriksa status login
   void _checkLoginStatus(BuildContext context) async {
-    await Future.delayed(Duration(seconds: 3));  // Delay untuk splash screen
+    await Future.delayed(Duration(seconds: 3)); // Delay untuk splash screen
 
     try {
-      // Cek apakah pengguna sudah login menggunakan Firebase Authentication
+      // Periksa apakah pengguna sudah login menggunakan Firebase Authentication
       var user = FirebaseAuth.instance.currentUser;
       if (user != null) {
-        // Jika sudah login, navigasikan ke HomeScreen dengan uid pengguna
+        // Jika sudah login, navigasi ke HomeScreen dengan uid pengguna
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => HomeScreen(uid: user.uid)),
         );
       } else {
-        // Jika belum login, navigasikan ke LoginScreen
+        // Jika belum login, navigasi ke LoginScreen
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => LoginScreen()),
@@ -49,24 +48,44 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.school,
-              size: 100,
-              color: Colors.blue,
+      body: Stack(
+        children: [
+          // Background Image
+          Positioned.fill(
+            child: Image.asset(
+              'assets/background.png', // Path ke background image
+              fit: BoxFit.cover, // Memastikan gambar memenuhi seluruh layar
             ),
-            SizedBox(height: 20),
-            Text(
-              'Aplikasi Bimbingan Belajar',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          ),
+          // Konten Splash Screen
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Logo di tengah
+                Image.asset(
+                  'assets/splash.png', // Path ke logo
+                  width: 150, // Sesuaikan ukuran logo
+                  height: 150,
+                ),
+                SizedBox(height: 20), // Jarak antara logo dan teks
+                // Teks di bawah logo
+                Text(
+                  'BalearnPro',
+                  style: TextStyle(
+                    fontSize: 28, // Ukuran font
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white, // Warna teks
+                  ),
+                ),
+                SizedBox(height: 40), // Jarak antara teks dan loading indicator
+                CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                ),
+              ],
             ),
-            SizedBox(height: 20),
-            CircularProgressIndicator(),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

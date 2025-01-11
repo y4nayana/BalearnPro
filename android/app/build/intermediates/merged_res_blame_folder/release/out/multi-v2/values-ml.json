@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.balearnpro.app-mergeReleaseResources-50:/values-ml/values-ml.xml",
+            "outputFile": "com.balearnpro.app-mergeReleaseResources-52:/values-ml/values-ml.xml",
             "map": [
                 {
                     "source": "C:\\Users\\KRISNA\\.gradle\\caches\\transforms-3\\9e4ccc6433855b6fca26f8886c961f26\\transformed\\browser-1.8.0\\res\\values-ml\\values-ml.xml",

@@ -1,4 +1,4 @@
-#Sat Jan 11 10:36:19 NOVT 2025
+#Sat Jan 11 15:42:14 NOVT 2025
 base.0=D\:\\Telkom\\Semester 5\\Mobile\\BalearnPro\\android\\app\\build\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

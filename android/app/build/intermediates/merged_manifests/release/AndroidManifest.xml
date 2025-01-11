@@ -32,7 +32,7 @@
     <application
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:extractNativeLibs="false"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="BalearnPro" >
         <activity
             android:name="com.balearnpro.app.MainActivity"

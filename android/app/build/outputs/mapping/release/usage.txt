@@ -41111,6 +41111,7 @@ kotlinx.coroutines.tasks.TasksKt$awaitImpl$2$1
 kotlinx.coroutines.tasks.TasksKt$awaitImpl$2$2
 kotlinx.coroutines.tasks.TasksKt
 kotlinx.coroutines.time.TimeKt
+net.jonhanson.flutter_native_splash.R
 okio.-Base64:
     public static final byte[] decodeBase64ToArray(java.lang.String)
     public static final byte[] getBASE64()

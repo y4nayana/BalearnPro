@@ -12,19 +12,28 @@ void main() async {
 
   // Inisialisasi Firebase
   try {
-    print("Inisialisasi Firebase...");
+    assert(() {
+      print("Inisialisasi Firebase...");
+      return true;
+    }());
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
-    print("Firebase Initialized Successfully");
+    assert(() {
+      print("Firebase Initialized Successfully");
+      return true;
+    }());
     firebaseInitialized = true;
   } catch (e) {
-    print("Error Initializing Firebase: $e");
+    assert(() {
+      print("Error Initializing Firebase: $e");
+      return true;
+    }());
     firebaseInitialized = false;
   }
 
   // Inisialisasi SQLite untuk Desktop (Windows, MacOS, Linux)
-  if (isDesktopPlatform()) {
+  if (!kIsWeb && isDesktopPlatform()) {
     print("Inisialisasi SQLite untuk Desktop...");
     sqfliteFfiInit();
     databaseFactory = databaseFactoryFfi;

@@ -8,6 +8,7 @@ MERGED from [:cloud_firestore] C:\Users\KRISNA\AppData\Local\Pub\Cache\hosted\pu
 MERGED from [:firebase_auth] C:\Users\KRISNA\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_auth-5.4.0\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:2:1-15:12
 MERGED from [:firebase_core] C:\Users\KRISNA\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_core-3.10.0\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:2:1-15:12
 MERGED from [:flutter_inappwebview_android] C:\Users\KRISNA\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_inappwebview_android-1.1.3\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:2:1-48:12
+MERGED from [:flutter_native_splash] C:\Users\KRISNA\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_native_splash-2.4.4\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:2:1-7:12
 MERGED from [:sqflite_android] C:\Users\KRISNA\AppData\Local\Pub\Cache\hosted\pub.dev\sqflite_android-2.4.0\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.firebase:firebase-firestore-ktx:25.1.1] C:\Users\KRISNA\.gradle\caches\transforms-3\003372005c27e93a6aa3cac70b7c1a20\transformed\jetified-firebase-firestore-ktx-25.1.1\AndroidManifest.xml:2:1-18:12
 MERGED from [com.google.firebase:firebase-auth-ktx:23.1.0] C:\Users\KRISNA\.gradle\caches\transforms-3\8b1c80b36181d196c7cc0e61c387adf3\transformed\jetified-firebase-auth-ktx-23.1.0\AndroidManifest.xml:2:1-17:12
@@ -162,7 +163,7 @@ MERGED from [com.google.android.play:core-common:2.0.3] C:\Users\KRISNA\.gradle\
 	android:label
 		ADDED from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\src\main\AndroidManifest.xml:5:9-35
 	android:icon
-		ADDED from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\src\main\AndroidManifest.xml:6:9-43
+		ADDED from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\src\main\AndroidManifest.xml:6:9-38
 activity#com.balearnpro.app.MainActivity
 ADDED from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\src\main\AndroidManifest.xml:7:9-23:20
 	android:launchMode
@@ -229,6 +230,8 @@ MERGED from [:firebase_core] C:\Users\KRISNA\AppData\Local\Pub\Cache\hosted\pub.
 MERGED from [:firebase_core] C:\Users\KRISNA\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_core-3.10.0\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:5:5-44
 MERGED from [:flutter_inappwebview_android] C:\Users\KRISNA\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_inappwebview_android-1.1.3\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:5:5-44
 MERGED from [:flutter_inappwebview_android] C:\Users\KRISNA\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_inappwebview_android-1.1.3\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:5:5-44
+MERGED from [:flutter_native_splash] C:\Users\KRISNA\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_native_splash-2.4.4\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:5:5-44
+MERGED from [:flutter_native_splash] C:\Users\KRISNA\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_native_splash-2.4.4\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:5:5-44
 MERGED from [:sqflite_android] C:\Users\KRISNA\AppData\Local\Pub\Cache\hosted\pub.dev\sqflite_android-2.4.0\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:5:5-44
 MERGED from [:sqflite_android] C:\Users\KRISNA\AppData\Local\Pub\Cache\hosted\pub.dev\sqflite_android-2.4.0\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-firestore-ktx:25.1.1] C:\Users\KRISNA\.gradle\caches\transforms-3\003372005c27e93a6aa3cac70b7c1a20\transformed\jetified-firebase-firestore-ktx-25.1.1\AndroidManifest.xml:5:5-44

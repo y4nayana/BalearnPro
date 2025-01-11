@@ -188,7 +188,7 @@ Marking id:textinput_prefix_text:2131231200 reachable: referenced from D:\Telkom
 Marking dimen:material_input_text_to_prefix_suffix_padding:2131100131 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
 Marking attr:motionDurationShort3:2130903820 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
 Marking string:clear_text_end_icon_content_description:2131820596 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
-Marking drawable:mtrl_ic_cancel:2131165398 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
+Marking drawable:mtrl_ic_cancel:2131165399 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
 Marking attr:theme:2130904155 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
 Marking attr:materialThemeOverlay:2130903776 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
 Marking layout:mtrl_calendar_day_of_week:2131427407 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
@@ -223,7 +223,7 @@ Marking id:tag_accessibility_clickable_spans:2131231174 reachable: referenced fr
 Marking id:month_title:2131231016 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
 Marking attr:materialCalendarStyle:2130903756 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
 Marking string:exposed_dropdown_menu_content_description:2131820618 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
-Marking drawable:mtrl_dropdown_arrow:2131165395 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
+Marking drawable:mtrl_dropdown_arrow:2131165396 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
 Marking attr:alertDialogStyle:2130903084 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
 Marking attr:actionModeStyle:2130903070 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
 Marking layout:abc_action_mode_close_item_material:2131427333 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
@@ -409,8 +409,8 @@ Marking id:mtrl_calendar_main_pane:2131231022 reachable: referenced from D:\Telk
 Marking id:mtrl_picker_header_selection_text:2131231033 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
 Marking id:mtrl_picker_header_toggle:2131231035 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
 Marking id:mtrl_picker_title_text:2131231039 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
-Marking drawable:material_ic_calendar_black_24dp:2131165374 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
-Marking drawable:material_ic_edit_black_24dp:2131165376 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
+Marking drawable:material_ic_calendar_black_24dp:2131165375 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
+Marking drawable:material_ic_edit_black_24dp:2131165377 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
 Marking string:mtrl_picker_toggle_to_calendar_input_mode:2131820714 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
 Marking string:mtrl_picker_toggle_to_text_input_mode:2131820716 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
 Marking id:fullscreen_header:2131230935 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
@@ -419,14 +419,14 @@ Marking layout:design_navigation_menu_item:2131427373 reachable: referenced from
 Marking dimen:design_navigation_icon_size:2131099769 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
 Marking id:design_menu_item_text:2131230885 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
 Marking id:design_menu_item_action_area_stub:2131230884 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
-Marking drawable:navigation_empty_icon:2131165420 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
+Marking drawable:navigation_empty_icon:2131165421 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
 Marking attr:state_indeterminate:2130904026 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
 Marking attr:state_error:2130904025 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
 Marking style:Widget_MaterialComponents_CompoundButton_CheckBox:2131887098 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
-Marking drawable:mtrl_checkbox_button_checked_unchecked:2131165385 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
+Marking drawable:mtrl_checkbox_button_checked_unchecked:2131165386 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
 Marking attr:isMaterial3Theme:2130903592 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
-Marking drawable:mtrl_checkbox_button:2131165384 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
-Marking drawable:mtrl_checkbox_button_icon:2131165386 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
+Marking drawable:mtrl_checkbox_button:2131165385 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
+Marking drawable:mtrl_checkbox_button_icon:2131165387 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
 Marking id:checked:2131230849 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
 Marking id:unchecked:2131231219 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
 Marking id:indeterminate:2131230960 reachable: referenced from D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
@@ -742,8 +742,8 @@ setEpicenterBounds
 totpInfo
 HapticFeedback.vibrate
 longitude
-repeatCount
 decompressor
+repeatCount
 DEVICE_MANAGEMENT_REQUIRED
 flutter/restoration
 INVALID_APP_CREDENTIAL
@@ -2885,9 +2885,9 @@ limitType_
 SAFE_PARCELABLE_NULL_STRING
 ENUM_LIST_PACKED
 android:visibility:screenLocation
-get_browser_hybrid_client_sign_pendin...
 ToolbarWidgetWrapper
 SystemUiMode.immersive
+get_browser_hybrid_client_sign_pendin...
 getTokenRefactor__clear_token_timeout...
 DELETE
 shuffleAddressList
@@ -4224,6 +4224,7 @@ GPLUS_OTHER
 fragmentManager
 UNARY_FILTER
 0x%02x
+flutter_native_splash
 MISSING_MFA_PENDING_CREDENTIAL
 createUserWithEmailAndPassword
 oldText
@@ -4467,8 +4468,8 @@ android.speech.extra.PROMPT
 bottom
 SystemChrome.setApplicationSwitcherDe...
 com.google.android.gms.auth.account.d...
-NOT_IN
 0123456789abcdef
+NOT_IN
 REQUIRES_SECOND_FACTOR_AUTH
 Fido.FIDO2_API
 GetTokenResultFactory
@@ -4844,8 +4845,8 @@ bytesValue
 google_storage_bucket
 onCloseWindow
 onCreateContextMenu
-OP_POST_NOTIFICATION
 okio.Okio
+OP_POST_NOTIFICATION
 /accounts/mfaSignIn:finalize
 COMPLETING_ALREADY
 lastSignInTimestamp
@@ -5806,8 +5807,8 @@ userAgent
 android.hardware.type.television
 queryTypeCase_
 token
-fraction
 sharedElements
+fraction
 SystemChrome.setPreferredOrientations
 expect
 phoneNumberDevice
@@ -6000,6 +6001,7 @@ Marking attr:logo:2130903727 used because it matches string pool constant log
 Marking attr:logoAdjustViewBounds:2130903728 used because it matches string pool constant log
 Marking attr:logoDescription:2130903729 used because it matches string pool constant log
 Marking attr:logoScaleType:2130903730 used because it matches string pool constant log
+Marking drawable:logo:2131165362 used because it matches string pool constant log
 Marking id:checked:2131230849 used because it matches string pool constant checked
 Marking attr:checkedButton:2130903209 used because it matches string pool constant checked
 Marking attr:checkedChip:2130903210 used because it matches string pool constant checked
@@ -6409,18 +6411,18 @@ Marking dimen:notification_small_icon_size_as_large:2131100344 used because it m
 Marking dimen:notification_subtext_size:2131100345 used because it matches string pool constant notification
 Marking dimen:notification_top_pad:2131100346 used because it matches string pool constant notification
 Marking dimen:notification_top_pad_large_text:2131100347 used because it matches string pool constant notification
-Marking drawable:notification_action_background:2131165421 used because it matches string pool constant notification
-Marking drawable:notification_bg:2131165422 used because it matches string pool constant notification
-Marking drawable:notification_bg_low:2131165423 used because it matches string pool constant notification
-Marking drawable:notification_bg_low_normal:2131165424 used because it matches string pool constant notification
-Marking drawable:notification_bg_low_pressed:2131165425 used because it matches string pool constant notification
-Marking drawable:notification_bg_normal:2131165426 used because it matches string pool constant notification
-Marking drawable:notification_bg_normal_pressed:2131165427 used because it matches string pool constant notification
-Marking drawable:notification_icon_background:2131165428 used because it matches string pool constant notification
-Marking drawable:notification_oversize_large_icon_bg:2131165429 used because it matches string pool constant notification
-Marking drawable:notification_template_icon_bg:2131165430 used because it matches string pool constant notification
-Marking drawable:notification_template_icon_low_bg:2131165431 used because it matches string pool constant notification
-Marking drawable:notification_tile_bg:2131165432 used because it matches string pool constant notification
+Marking drawable:notification_action_background:2131165422 used because it matches string pool constant notification
+Marking drawable:notification_bg:2131165423 used because it matches string pool constant notification
+Marking drawable:notification_bg_low:2131165424 used because it matches string pool constant notification
+Marking drawable:notification_bg_low_normal:2131165425 used because it matches string pool constant notification
+Marking drawable:notification_bg_low_pressed:2131165426 used because it matches string pool constant notification
+Marking drawable:notification_bg_normal:2131165427 used because it matches string pool constant notification
+Marking drawable:notification_bg_normal_pressed:2131165428 used because it matches string pool constant notification
+Marking drawable:notification_icon_background:2131165429 used because it matches string pool constant notification
+Marking drawable:notification_oversize_large_icon_bg:2131165430 used because it matches string pool constant notification
+Marking drawable:notification_template_icon_bg:2131165431 used because it matches string pool constant notification
+Marking drawable:notification_template_icon_low_bg:2131165432 used because it matches string pool constant notification
+Marking drawable:notification_tile_bg:2131165433 used because it matches string pool constant notification
 Marking id:notification_background:2131231057 used because it matches string pool constant notification
 Marking id:notification_main_column:2131231058 used because it matches string pool constant notification
 Marking id:notification_main_column_container:2131231059 used because it matches string pool constant notification
@@ -6449,8 +6451,8 @@ Marking dimen:tooltip_precise_anchor_threshold:2131100352 used because it matche
 Marking dimen:tooltip_vertical_padding:2131100353 used because it matches string pool constant tooltip
 Marking dimen:tooltip_y_offset_non_touch:2131100354 used because it matches string pool constant tooltip
 Marking dimen:tooltip_y_offset_touch:2131100355 used because it matches string pool constant tooltip
-Marking drawable:tooltip_frame_dark:2131165435 used because it matches string pool constant tooltip
-Marking drawable:tooltip_frame_light:2131165436 used because it matches string pool constant tooltip
+Marking drawable:tooltip_frame_dark:2131165436 used because it matches string pool constant tooltip
+Marking drawable:tooltip_frame_light:2131165437 used because it matches string pool constant tooltip
 Marking attr:arcMode:2130903099 used because it matches string pool constant ar
 Marking attr:arrowHeadLength:2130903100 used because it matches string pool constant ar
 Marking attr:arrowShaftLength:2130903101 used because it matches string pool constant ar
@@ -6691,7 +6693,7 @@ Marking attr:textureBlurFactor:2130904151 used because it matches string pool co
 Marking attr:textureEffect:2130904152 used because it matches string pool constant te
 Marking attr:textureHeight:2130904153 used because it matches string pool constant te
 Marking attr:textureWidth:2130904154 used because it matches string pool constant te
-Marking drawable:test_level_drawable:2131165434 used because it matches string pool constant te
+Marking drawable:test_level_drawable:2131165435 used because it matches string pool constant te
 Marking id:text:2131231186 used because it matches string pool constant te
 Marking id:text2:2131231187 used because it matches string pool constant te
 Marking id:textEnd:2131231188 used because it matches string pool constant te
@@ -11394,6 +11396,7 @@ Marking id:fragment_container_view_tag:2131230933 used because it matches string
 @drawable/ic_password : reachable=false
 @drawable/ic_search_black_24 : reachable=false
 @drawable/launch_background : reachable=false
+@drawable/logo : reachable=true
 @drawable/m3_appbar_background : reachable=false
     @attr/colorSurface
     @color/m3_appbar_overlay_color
@@ -12775,7 +12778,7 @@ Marking id:fragment_container_view_tag:2131230933 used because it matches string
     @string/action_reload
     @string/action_close
     @string/menu_search
-@mipmap/ic_launcher : reachable=true
+@mipmap/ic_launcher : reachable=false
 @plurals/mtrl_badge_content_description : reachable=false
 @raw/firebase_common_keep : reachable=true
 @string/abc_action_bar_home_description : reachable=false
@@ -21993,29 +21996,30 @@ The root reachable resources are:
  drawable:common_full_open_on_phone:2131165313
  drawable:design_password_eye:2131165335
  drawable:floating_action_mode_shape:2131165337
- drawable:material_ic_calendar_black_24dp:2131165374
- drawable:material_ic_edit_black_24dp:2131165376
- drawable:mtrl_checkbox_button:2131165384
- drawable:mtrl_checkbox_button_checked_unchecked:2131165385
- drawable:mtrl_checkbox_button_icon:2131165386
- drawable:mtrl_dropdown_arrow:2131165395
- drawable:mtrl_ic_cancel:2131165398
- drawable:navigation_empty_icon:2131165420
- drawable:notification_action_background:2131165421
- drawable:notification_bg:2131165422
- drawable:notification_bg_low:2131165423
- drawable:notification_bg_low_normal:2131165424
- drawable:notification_bg_low_pressed:2131165425
- drawable:notification_bg_normal:2131165426
- drawable:notification_bg_normal_pressed:2131165427
- drawable:notification_icon_background:2131165428
- drawable:notification_oversize_large_icon_bg:2131165429
- drawable:notification_template_icon_bg:2131165430
- drawable:notification_template_icon_low_bg:2131165431
- drawable:notification_tile_bg:2131165432
- drawable:test_level_drawable:2131165434
- drawable:tooltip_frame_dark:2131165435
- drawable:tooltip_frame_light:2131165436
+ drawable:logo:2131165362
+ drawable:material_ic_calendar_black_24dp:2131165375
+ drawable:material_ic_edit_black_24dp:2131165377
+ drawable:mtrl_checkbox_button:2131165385
+ drawable:mtrl_checkbox_button_checked_unchecked:2131165386
+ drawable:mtrl_checkbox_button_icon:2131165387
+ drawable:mtrl_dropdown_arrow:2131165396
+ drawable:mtrl_ic_cancel:2131165399
+ drawable:navigation_empty_icon:2131165421
+ drawable:notification_action_background:2131165422
+ drawable:notification_bg:2131165423
+ drawable:notification_bg_low:2131165424
+ drawable:notification_bg_low_normal:2131165425
+ drawable:notification_bg_low_pressed:2131165426
+ drawable:notification_bg_normal:2131165427
+ drawable:notification_bg_normal_pressed:2131165428
+ drawable:notification_icon_background:2131165429
+ drawable:notification_oversize_large_icon_bg:2131165430
+ drawable:notification_template_icon_bg:2131165431
+ drawable:notification_template_icon_low_bg:2131165432
+ drawable:notification_tile_bg:2131165433
+ drawable:test_level_drawable:2131165435
+ drawable:tooltip_frame_dark:2131165436
+ drawable:tooltip_frame_light:2131165437
  id:BOTTOM_END:2131230721
  id:BOTTOM_START:2131230722
  id:SHOW_ALL:2131230728
@@ -22378,7 +22382,6 @@ The root reachable resources are:
  layout:select_dialog_singlechoice_material:2131427439
  layout:support_simple_spinner_dropdown_item:2131427440
  menu:menu_main:2131558400
- mipmap:ic_launcher:2131623936
  raw:firebase_common_keep:2131755008
  string:abc_action_bar_up_description:2131820545
  string:abc_menu_alt_shortcut_label:2131820552
@@ -23775,37 +23778,37 @@ Unused resources are:
  drawable:ic_passkey:2131165358
  drawable:ic_password:2131165359
  drawable:ic_search_black_24:2131165360
- drawable:m3_appbar_background:2131165362
- drawable:m3_avd_hide_password:2131165363
- drawable:m3_avd_show_password:2131165364
- drawable:m3_password_eye:2131165365
- drawable:m3_popupmenu_background_overlay:2131165366
- drawable:m3_radiobutton_ripple:2131165367
- drawable:m3_selection_control_ripple:2131165368
- drawable:m3_tabs_background:2131165369
- drawable:m3_tabs_line_indicator:2131165370
- drawable:m3_tabs_rounded_line_indicator:2131165371
- drawable:m3_tabs_transparent_background:2131165372
- drawable:material_ic_menu_arrow_up_black_24dp:2131165382
- drawable:mtrl_bottomsheet_drag_handle:2131165383
- drawable:mtrl_dialog_background:2131165394
- drawable:mtrl_ic_error:2131165402
- drawable:mtrl_navigation_bar_item_background:2131165404
- drawable:mtrl_popupmenu_background:2131165405
- drawable:mtrl_popupmenu_background_overlay:2131165406
- drawable:mtrl_switch_thumb:2131165407
- drawable:mtrl_switch_thumb_checked:2131165408
- drawable:mtrl_switch_thumb_checked_pressed:2131165409
- drawable:mtrl_switch_thumb_checked_unchecked:2131165410
- drawable:mtrl_switch_thumb_pressed:2131165411
- drawable:mtrl_switch_thumb_pressed_checked:2131165412
- drawable:mtrl_switch_thumb_pressed_unchecked:2131165413
- drawable:mtrl_switch_thumb_unchecked:2131165414
- drawable:mtrl_switch_thumb_unchecked_checked:2131165415
- drawable:mtrl_switch_thumb_unchecked_pressed:2131165416
- drawable:mtrl_switch_track:2131165417
- drawable:mtrl_switch_track_decoration:2131165418
- drawable:mtrl_tabs_default_indicator:2131165419
+ drawable:m3_appbar_background:2131165363
+ drawable:m3_avd_hide_password:2131165364
+ drawable:m3_avd_show_password:2131165365
+ drawable:m3_password_eye:2131165366
+ drawable:m3_popupmenu_background_overlay:2131165367
+ drawable:m3_radiobutton_ripple:2131165368
+ drawable:m3_selection_control_ripple:2131165369
+ drawable:m3_tabs_background:2131165370
+ drawable:m3_tabs_line_indicator:2131165371
+ drawable:m3_tabs_rounded_line_indicator:2131165372
+ drawable:m3_tabs_transparent_background:2131165373
+ drawable:material_ic_menu_arrow_up_black_24dp:2131165383
+ drawable:mtrl_bottomsheet_drag_handle:2131165384
+ drawable:mtrl_dialog_background:2131165395
+ drawable:mtrl_ic_error:2131165403
+ drawable:mtrl_navigation_bar_item_background:2131165405
+ drawable:mtrl_popupmenu_background:2131165406
+ drawable:mtrl_popupmenu_background_overlay:2131165407
+ drawable:mtrl_switch_thumb:2131165408
+ drawable:mtrl_switch_thumb_checked:2131165409
+ drawable:mtrl_switch_thumb_checked_pressed:2131165410
+ drawable:mtrl_switch_thumb_checked_unchecked:2131165411
+ drawable:mtrl_switch_thumb_pressed:2131165412
+ drawable:mtrl_switch_thumb_pressed_checked:2131165413
+ drawable:mtrl_switch_thumb_pressed_unchecked:2131165414
+ drawable:mtrl_switch_thumb_unchecked:2131165415
+ drawable:mtrl_switch_thumb_unchecked_checked:2131165416
+ drawable:mtrl_switch_thumb_unchecked_pressed:2131165417
+ drawable:mtrl_switch_track:2131165418
+ drawable:mtrl_switch_track_decoration:2131165419
+ drawable:mtrl_tabs_default_indicator:2131165420
  id:ALT:2131230720
  id:CTRL:2131230723
  id:FUNCTION:2131230724
@@ -24130,6 +24133,7 @@ Unused resources are:
  layout:mtrl_picker_text_input_date_range:2131427428
  layout:mtrl_search_bar:2131427429
  layout:mtrl_search_view:2131427430
+ mipmap:ic_launcher:2131623936
  plurals:mtrl_badge_content_description:2131689472
  string:abc_action_bar_home_description:2131820544
  string:abc_action_menu_overflow_description:2131820546
@@ -25363,3 +25367,8 @@ Skipped unused resource res/layout/mtrl_search_bar.xml: 643 bytes (replaced with
 Skipped unused resource res/layout/mtrl_search_view.xml: 8331 bytes (replaced with small dummy file of size 9 bytes)
 Skipped unused resource res/layout-sw600dp-v13/design_layout_snackbar.xml: 681 bytes (replaced with small dummy file of size 9 bytes)
 Skipped unused resource res/layout-sw600dp-v13/mtrl_layout_snackbar.xml: 517 bytes (replaced with small dummy file of size 9 bytes)
+Skipped unused resource res/mipmap-mdpi-v4/ic_launcher.png: 405 bytes (replaced with small dummy file of size 67 bytes)
+Skipped unused resource res/mipmap-hdpi-v4/ic_launcher.png: 507 bytes (replaced with small dummy file of size 67 bytes)
+Skipped unused resource res/mipmap-xhdpi-v4/ic_launcher.png: 684 bytes (replaced with small dummy file of size 67 bytes)
+Skipped unused resource res/mipmap-xxhdpi-v4/ic_launcher.png: 994 bytes (replaced with small dummy file of size 67 bytes)
+Skipped unused resource res/mipmap-xxxhdpi-v4/ic_launcher.png: 1406 bytes (replaced with small dummy file of size 67 bytes)

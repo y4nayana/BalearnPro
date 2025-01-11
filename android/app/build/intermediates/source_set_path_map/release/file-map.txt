@@ -45,12 +45,14 @@ com.balearnpro.app-packaged_res-43 C:\Users\KRISNA\AppData\Local\Pub\Cache\hoste
 com.balearnpro.app-packaged_res-44 C:\Users\KRISNA\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_auth-5.4.0\android\build\intermediates\packaged_res\release
 com.balearnpro.app-packaged_res-45 C:\Users\KRISNA\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_core-3.10.0\android\build\intermediates\packaged_res\release
 com.balearnpro.app-packaged_res-46 C:\Users\KRISNA\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_inappwebview_android-1.1.3\android\build\intermediates\packaged_res\release
-com.balearnpro.app-google-services-47 D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\generated\res\google-services\release
-com.balearnpro.app-pngs-48 D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\generated\res\pngs\release
-com.balearnpro.app-resValues-49 D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\generated\res\resValues\release
-com.balearnpro.app-packageReleaseResources-50 D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\incremental\release\packageReleaseResources\merged.dir
-com.balearnpro.app-packageReleaseResources-51 D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\incremental\release\packageReleaseResources\stripped.dir
-com.balearnpro.app-merged-not-compiled-resources-52 D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\merged-not-compiled-resources\release
-com.balearnpro.app-merged_res-53 D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\merged_res\release
-com.balearnpro.app-main-54 D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\src\main\res
-com.balearnpro.app-release-55 D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\src\release\res
+com.balearnpro.app-packaged_res-47 C:\Users\KRISNA\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_native_splash-2.4.4\android\build\intermediates\packaged_res\release
+com.balearnpro.app-packaged_res-48 C:\Users\KRISNA\AppData\Local\Pub\Cache\hosted\pub.dev\sqflite_android-2.4.0\android\build\intermediates\packaged_res\release
+com.balearnpro.app-google-services-49 D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\generated\res\google-services\release
+com.balearnpro.app-pngs-50 D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\generated\res\pngs\release
+com.balearnpro.app-resValues-51 D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\generated\res\resValues\release
+com.balearnpro.app-packageReleaseResources-52 D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\incremental\release\packageReleaseResources\merged.dir
+com.balearnpro.app-packageReleaseResources-53 D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\incremental\release\packageReleaseResources\stripped.dir
+com.balearnpro.app-merged-not-compiled-resources-54 D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\merged-not-compiled-resources\release
+com.balearnpro.app-merged_res-55 D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\build\intermediates\merged_res\release
+com.balearnpro.app-main-56 D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\src\main\res
+com.balearnpro.app-release-57 D:\Telkom\Semester 5\Mobile\BalearnPro\android\app\src\release\res

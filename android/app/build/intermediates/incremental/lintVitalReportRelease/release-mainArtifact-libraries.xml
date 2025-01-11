@@ -56,6 +56,19 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
+      name="D:\Telkom\Semester 5\Mobile\BalearnPro\android@@:flutter_native_splash::release"
+      jars="C:\Users\KRISNA\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_native_splash-2.4.4\android\build\.transforms\62a3ac6d8894ff1693693567d17ea153\transformed\out\jars\classes.jar;C:\Users\KRISNA\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_native_splash-2.4.4\android\build\.transforms\62a3ac6d8894ff1693693567d17ea153\transformed\out\jars\libs\R.jar"
+      resolved="net.jonhanson.flutter_native_splash:flutter_native_splash:unspecified"
+      folder="C:\Users\KRISNA\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_native_splash-2.4.4\android\build\.transforms\62a3ac6d8894ff1693693567d17ea153\transformed\out"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
       name="D:\Telkom\Semester 5\Mobile\BalearnPro\android@@:sqflite_android::release"
       jars="C:\Users\KRISNA\AppData\Local\Pub\Cache\hosted\pub.dev\sqflite_android-2.4.0\android\build\.transforms\85d727c3c8f17fc1cd097d840abeba90\transformed\out\jars\classes.jar;C:\Users\KRISNA\AppData\Local\Pub\Cache\hosted\pub.dev\sqflite_android-2.4.0\android\build\.transforms\85d727c3c8f17fc1cd097d840abeba90\transformed\out\jars\libs\R.jar"
       resolved="com.tekartik.sqflite:sqflite_android:unspecified"
