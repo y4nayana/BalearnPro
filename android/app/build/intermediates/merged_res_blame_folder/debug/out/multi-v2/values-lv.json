@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.balearnpro.app-mergeDebugResources-47:/values-lv/values-lv.xml",
+            "outputFile": "com.balearnpro.app-mergeDebugResources-50:/values-lv/values-lv.xml",
             "map": [
                 {
                     "source": "C:\\Users\\KRISNA\\.gradle\\caches\\transforms-3\\3abf422e6f8fd30b157d574ac1de0372\\transformed\\jetified-credentials-1.2.0-rc01\\res\\values-lv\\values-lv.xml",
@@ -57,23 +57,6 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\KRISNA\\.gradle\\caches\\transforms-3\\3feab16123dbdab7cec4843ec3662cbc\\transformed\\browser-1.4.0\\res\\values-lv\\values-lv.xml",
-                    "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,158,257,373",
-                        "endColumns": "102,98,115,101",
-                        "endOffsets": "153,252,368,470"
-                    },
-                    "to": {
-                        "startLines": "69,72,73,74",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "7291,7553,7652,7768",
-                        "endColumns": "102,98,115,101",
-                        "endOffsets": "7389,7647,7763,7865"
-                    }
-                },
-                {
                     "source": "C:\\Users\\KRISNA\\.gradle\\caches\\transforms-3\\fc7c0f683e348c98b85e7c61c4ce7285\\transformed\\jetified-play-services-basement-18.4.0\\res\\values-lv\\values.xml",
                     "from": {
                         "startLines": "4",
@@ -88,6 +71,23 @@
                         "startOffsets": "5992",
                         "endColumns": "165",
                         "endOffsets": "6153"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\KRISNA\\.gradle\\caches\\transforms-3\\9e4ccc6433855b6fca26f8886c961f26\\transformed\\browser-1.8.0\\res\\values-lv\\values-lv.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,158,257,373",
+                        "endColumns": "102,98,115,101",
+                        "endOffsets": "153,252,368,470"
+                    },
+                    "to": {
+                        "startLines": "69,72,73,74",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "7291,7553,7652,7768",
+                        "endColumns": "102,98,115,101",
+                        "endOffsets": "7389,7647,7763,7865"
                     }
                 },
                 {

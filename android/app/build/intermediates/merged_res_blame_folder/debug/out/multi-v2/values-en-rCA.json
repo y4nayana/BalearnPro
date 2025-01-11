@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.balearnpro.app-mergeDebugResources-47:/values-en-rCA/values-en-rCA.xml",
+            "outputFile": "com.balearnpro.app-mergeDebugResources-50:/values-en-rCA/values-en-rCA.xml",
             "map": [
                 {
                     "source": "C:\\Users\\KRISNA\\.gradle\\caches\\transforms-3\\c8c2489ff0e3004219bd286dd798d634\\transformed\\appcompat-1.6.1\\res\\values-en-rCA\\values-en-rCA.xml",
@@ -38,6 +38,23 @@
                     }
                 },
                 {
+                    "source": "C:\\Users\\KRISNA\\.gradle\\caches\\transforms-3\\9e4ccc6433855b6fca26f8886c961f26\\transformed\\browser-1.8.0\\res\\values-en-rCA\\values-en-rCA.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,153,250,359",
+                        "endColumns": "97,96,108,98",
+                        "endOffsets": "148,245,354,453"
+                    },
+                    "to": {
+                        "startLines": "38,39,40,41",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "3706,3804,3901,4010",
+                        "endColumns": "97,96,108,98",
+                        "endOffsets": "3799,3896,4005,4104"
+                    }
+                },
+                {
                     "source": "C:\\Users\\KRISNA\\.gradle\\caches\\transforms-3\\5008fb5c154386e5f1e83ef807655b52\\transformed\\core-1.13.1\\res\\values-en-rCA\\values-en-rCA.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
@@ -52,23 +69,6 @@
                         "startOffsets": "2988,3084,3186,3285,3384,3488,3590,4192",
                         "endColumns": "95,101,98,98,103,101,115,100",
                         "endOffsets": "3079,3181,3280,3379,3483,3585,3701,4288"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\KRISNA\\.gradle\\caches\\transforms-3\\3feab16123dbdab7cec4843ec3662cbc\\transformed\\browser-1.4.0\\res\\values-en-rCA\\values-en-rCA.xml",
-                    "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,153,250,359",
-                        "endColumns": "97,96,108,98",
-                        "endOffsets": "148,245,354,453"
-                    },
-                    "to": {
-                        "startLines": "38,39,40,41",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "3706,3804,3901,4010",
-                        "endColumns": "97,96,108,98",
-                        "endOffsets": "3799,3896,4005,4104"
                     }
                 }
             ]

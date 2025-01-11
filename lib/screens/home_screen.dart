@@ -6,7 +6,7 @@ import 'package:balearnpro2/screens/lesson_screen.dart';
 import 'package:balearnpro2/screens/video_screen.dart';
 import 'package:balearnpro2/screens/chat/kontak_screen.dart';
 import 'package:balearnpro2/screens/Kalkulator/kalkulator_screen.dart';
-import 'package:balearnpro2/screens/lainnya_screen.dart';
+import 'package:balearnpro2/screens/note_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   final String uid;
@@ -60,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
       KontakScreen(currentUserId: widget.uid),
       KalkulatorScreen(),
       VideoScreen(),
-      LainnyaScreen(),
+      NoteScreen(),
     ];
   }
 

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.balearnpro.app-mergeReleaseResources-47:/values-si/values-si.xml",
+            "outputFile": "com.balearnpro.app-mergeReleaseResources-50:/values-si/values-si.xml",
             "map": [
                 {
                     "source": "C:\\Users\\KRISNA\\.gradle\\caches\\transforms-3\\5008fb5c154386e5f1e83ef807655b52\\transformed\\core-1.13.1\\res\\values-si\\values-si.xml",
@@ -18,6 +18,23 @@
                         "startOffsets": "3666,3768,3871,3976,4081,4180,4284,11546",
                         "endColumns": "101,102,104,104,98,103,113,100",
                         "endOffsets": "3763,3866,3971,4076,4175,4279,4393,11642"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\KRISNA\\.gradle\\caches\\transforms-3\\9e4ccc6433855b6fca26f8886c961f26\\transformed\\browser-1.8.0\\res\\values-si\\values-si.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,163,270,386",
+                        "endColumns": "107,106,115,104",
+                        "endOffsets": "158,265,381,486"
+                    },
+                    "to": {
+                        "startLines": "68,71,72,73",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "6888,7149,7256,7372",
+                        "endColumns": "107,106,115,104",
+                        "endOffsets": "6991,7251,7367,7472"
                     }
                 },
                 {
@@ -54,23 +71,6 @@
                         "startOffsets": "3035,3145",
                         "endColumns": "109,113",
                         "endOffsets": "3140,3254"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\KRISNA\\.gradle\\caches\\transforms-3\\3feab16123dbdab7cec4843ec3662cbc\\transformed\\browser-1.4.0\\res\\values-si\\values-si.xml",
-                    "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,163,270,386",
-                        "endColumns": "107,106,115,104",
-                        "endOffsets": "158,265,381,486"
-                    },
-                    "to": {
-                        "startLines": "68,71,72,73",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "6888,7149,7256,7372",
-                        "endColumns": "107,106,115,104",
-                        "endOffsets": "6991,7251,7367,7472"
                     }
                 },
                 {

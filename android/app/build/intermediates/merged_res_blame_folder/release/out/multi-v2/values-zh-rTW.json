@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.balearnpro.app-mergeReleaseResources-47:/values-zh-rTW/values-zh-rTW.xml",
+            "outputFile": "com.balearnpro.app-mergeReleaseResources-50:/values-zh-rTW/values-zh-rTW.xml",
             "map": [
                 {
                     "source": "C:\\Users\\KRISNA\\.gradle\\caches\\transforms-3\\3abf422e6f8fd30b157d574ac1de0372\\transformed\\jetified-credentials-1.2.0-rc01\\res\\values-zh-rTW\\values-zh-rTW.xml",
@@ -37,23 +37,6 @@
                         "endLines": "5,35,36,37,38,39,47,48,49,69,70,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125",
                         "endColumns": "12,63,61,66,69,76,93,106,72,61,77,59,59,77,60,57,55,59,57,53,84,55,57,53,64,91,73,76,119,62,62,76,49,50,65,62,67,77,60,70,66,61,78,64,82,84,73,63,75,47,63,75,77,61,63,62,79,76,75,76,53,54,68",
                         "endOffsets": "292,3139,3201,3268,3338,3415,4170,4277,4350,6315,6393,6739,6799,6877,6938,6996,7052,7112,7170,7224,7309,7365,7423,7477,7542,7634,7708,7785,7905,7968,8031,8108,8158,8209,8275,8338,8406,8484,8545,8616,8683,8745,8824,8889,8972,9057,9131,9195,9271,9319,9383,9459,9537,9599,9663,9726,9806,9883,9959,10036,10090,10145,10214"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\KRISNA\\.gradle\\caches\\transforms-3\\3feab16123dbdab7cec4843ec3662cbc\\transformed\\browser-1.4.0\\res\\values-zh-rTW\\values-zh-rTW.xml",
-                    "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,139,231,332",
-                        "endColumns": "83,91,100,92",
-                        "endOffsets": "134,226,327,420"
-                    },
-                    "to": {
-                        "startLines": "68,71,72,73",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "6174,6398,6490,6591",
-                        "endColumns": "83,91,100,92",
-                        "endOffsets": "6253,6485,6586,6679"
                     }
                 },
                 {
@@ -105,6 +88,23 @@
                         "startOffsets": "4355,4456,4584,4699,4801,4908,5024,5124,5322,5432,5533,5662,5777,5879,5987,6043,6100",
                         "endColumns": "100,127,114,101,106,115,99,94,109,100,128,114,101,107,55,56,73",
                         "endOffsets": "4451,4579,4694,4796,4903,5019,5119,5214,5427,5528,5657,5772,5874,5982,6038,6095,6169"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\KRISNA\\.gradle\\caches\\transforms-3\\9e4ccc6433855b6fca26f8886c961f26\\transformed\\browser-1.8.0\\res\\values-zh-rTW\\values-zh-rTW.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,139,231,332",
+                        "endColumns": "83,91,100,92",
+                        "endOffsets": "134,226,327,420"
+                    },
+                    "to": {
+                        "startLines": "68,71,72,73",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "6174,6398,6490,6591",
+                        "endColumns": "83,91,100,92",
+                        "endOffsets": "6253,6485,6586,6679"
                     }
                 },
                 {

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.balearnpro.app-mergeReleaseResources-47:/values-fr-rCA/values-fr-rCA.xml",
+            "outputFile": "com.balearnpro.app-mergeReleaseResources-50:/values-fr-rCA/values-fr-rCA.xml",
             "map": [
                 {
                     "source": "C:\\Users\\KRISNA\\.gradle\\caches\\transforms-3\\fc7c0f683e348c98b85e7c61c4ce7285\\transformed\\jetified-play-services-basement-18.4.0\\res\\values-fr-rCA\\values.xml",
@@ -35,6 +35,23 @@
                         "startOffsets": "4843,4949,5129,5259,5368,5539,5672,5793,6067,6262,6374,6559,6695,6855,7034,7107,7171",
                         "endColumns": "105,179,129,108,170,132,120,112,194,111,184,135,159,178,72,63,83",
                         "endOffsets": "4944,5124,5254,5363,5534,5667,5788,5901,6257,6369,6554,6690,6850,7029,7102,7166,7250"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\KRISNA\\.gradle\\caches\\transforms-3\\9e4ccc6433855b6fca26f8886c961f26\\transformed\\browser-1.8.0\\res\\values-fr-rCA\\values-fr-rCA.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,162,264,383",
+                        "endColumns": "106,101,118,104",
+                        "endOffsets": "157,259,378,483"
+                    },
+                    "to": {
+                        "startLines": "68,71,72,73",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "7255,7525,7627,7746",
+                        "endColumns": "106,101,118,104",
+                        "endOffsets": "7357,7622,7741,7846"
                     }
                 },
                 {
@@ -88,23 +105,6 @@
                         "startOffsets": "3813,3911,4013,4112,4214,4318,4422,12095",
                         "endColumns": "97,101,98,101,103,103,113,100",
                         "endOffsets": "3906,4008,4107,4209,4313,4417,4531,12191"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\KRISNA\\.gradle\\caches\\transforms-3\\3feab16123dbdab7cec4843ec3662cbc\\transformed\\browser-1.4.0\\res\\values-fr-rCA\\values-fr-rCA.xml",
-                    "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,162,264,383",
-                        "endColumns": "106,101,118,104",
-                        "endOffsets": "157,259,378,483"
-                    },
-                    "to": {
-                        "startLines": "68,71,72,73",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "7255,7525,7627,7746",
-                        "endColumns": "106,101,118,104",
-                        "endOffsets": "7357,7622,7741,7846"
                     }
                 },
                 {

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.balearnpro.app-mergeDebugResources-47:/values-en-rXC/values-en-rXC.xml",
+            "outputFile": "com.balearnpro.app-mergeDebugResources-50:/values-en-rXC/values-en-rXC.xml",
             "map": [
                 {
                     "source": "C:\\Users\\KRISNA\\.gradle\\caches\\transforms-3\\5008fb5c154386e5f1e83ef807655b52\\transformed\\core-1.13.1\\res\\values-en-rXC\\values-en-rXC.xml",
@@ -18,6 +18,23 @@
                         "startOffsets": "5959,6155,6360,6561,6762,6969,7174,8384",
                         "endColumns": "195,204,200,200,206,204,211,203",
                         "endOffsets": "6150,6355,6556,6757,6964,7169,7381,8583"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\KRISNA\\.gradle\\caches\\transforms-3\\9e4ccc6433855b6fca26f8886c961f26\\transformed\\browser-1.8.0\\res\\values-en-rXC\\values-en-rXC.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,255,454,665",
+                        "endColumns": "199,198,210,201",
+                        "endOffsets": "250,449,660,862"
+                    },
+                    "to": {
+                        "startLines": "38,39,40,41",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "7386,7586,7785,7996",
+                        "endColumns": "199,198,210,201",
+                        "endOffsets": "7581,7780,7991,8193"
                     }
                 },
                 {
@@ -52,23 +69,6 @@
                         "startOffsets": "5528,5743",
                         "endColumns": "214,215",
                         "endOffsets": "5738,5954"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\KRISNA\\.gradle\\caches\\transforms-3\\3feab16123dbdab7cec4843ec3662cbc\\transformed\\browser-1.4.0\\res\\values-en-rXC\\values-en-rXC.xml",
-                    "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,255,454,665",
-                        "endColumns": "199,198,210,201",
-                        "endOffsets": "250,449,660,862"
-                    },
-                    "to": {
-                        "startLines": "38,39,40,41",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "7386,7586,7785,7996",
-                        "endColumns": "199,198,210,201",
-                        "endOffsets": "7581,7780,7991,8193"
                     }
                 }
             ]

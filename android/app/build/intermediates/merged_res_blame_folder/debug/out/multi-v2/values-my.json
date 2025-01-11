@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.balearnpro.app-mergeDebugResources-47:/values-my/values-my.xml",
+            "outputFile": "com.balearnpro.app-mergeDebugResources-50:/values-my/values-my.xml",
             "map": [
                 {
                     "source": "C:\\Users\\KRISNA\\.gradle\\caches\\transforms-3\\fc7c0f683e348c98b85e7c61c4ce7285\\transformed\\jetified-play-services-basement-18.4.0\\res\\values-my\\values.xml",
@@ -37,23 +37,6 @@
                         "endLines": "5,35,36,37,38,39,47,48,49,69,70,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125",
                         "endColumns": "12,100,98,75,90,83,105,128,84,64,89,74,58,90,62,64,58,70,61,56,118,57,60,54,72,131,90,88,140,77,76,91,57,50,65,71,81,81,74,73,71,78,96,80,85,91,73,78,85,53,67,82,80,61,63,62,111,102,103,104,60,54,81",
                         "endOffsets": "330,3424,3523,3599,3690,3774,4622,4751,4836,7364,7454,7857,7916,8007,8070,8135,8194,8265,8327,8384,8503,8561,8622,8677,8750,8882,8973,9062,9203,9281,9358,9450,9508,9559,9625,9697,9779,9861,9936,10010,10082,10161,10258,10339,10425,10517,10591,10670,10756,10810,10878,10961,11042,11104,11168,11231,11343,11446,11550,11655,11716,11771,11853"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\KRISNA\\.gradle\\caches\\transforms-3\\3feab16123dbdab7cec4843ec3662cbc\\transformed\\browser-1.4.0\\res\\values-my\\values-my.xml",
-                    "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,164,270,385",
-                        "endColumns": "108,105,114,106",
-                        "endOffsets": "159,265,380,487"
-                    },
-                    "to": {
-                        "startLines": "68,71,72,73",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "7195,7459,7565,7680",
-                        "endColumns": "108,105,114,106",
-                        "endOffsets": "7299,7560,7675,7782"
                     }
                 },
                 {
@@ -105,6 +88,23 @@
                         "startOffsets": "3779,3882,3986,4089,4191,4296,4402,11944",
                         "endColumns": "102,103,102,101,104,105,118,100",
                         "endOffsets": "3877,3981,4084,4186,4291,4397,4516,12040"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\KRISNA\\.gradle\\caches\\transforms-3\\9e4ccc6433855b6fca26f8886c961f26\\transformed\\browser-1.8.0\\res\\values-my\\values-my.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,164,270,385",
+                        "endColumns": "108,105,114,106",
+                        "endOffsets": "159,265,380,487"
+                    },
+                    "to": {
+                        "startLines": "68,71,72,73",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "7195,7459,7565,7680",
+                        "endColumns": "108,105,114,106",
+                        "endOffsets": "7299,7560,7675,7782"
                     }
                 },
                 {
