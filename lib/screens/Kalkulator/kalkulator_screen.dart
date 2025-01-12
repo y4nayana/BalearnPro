@@ -38,6 +38,11 @@ class KalkulatorScreenState extends State<KalkulatorScreen> {
 
   String _evaluateExpression(String expression) {
     try {
+      // Ganti simbol operator dengan simbol yang dikenali oleh parser
+      expression = expression.replaceAll('×', '*');
+      expression = expression.replaceAll('÷', '/');
+      expression = expression.replaceAll('−', '-');
+      
       Parser parser = Parser();
       Expression exp = parser.parse(expression);
       ContextModel cm = ContextModel();

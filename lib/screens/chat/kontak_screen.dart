@@ -12,7 +12,6 @@ class KontakScreen extends StatelessWidget {
     final chatRef = FirebaseFirestore.instance.collection('chats');
 
     try {
-      // Periksa apakah chat sudah ada
       final existingChat = await chatRef
           .where('users', arrayContains: currentUserId)
           .get();
@@ -20,18 +19,17 @@ class KontakScreen extends StatelessWidget {
       for (var doc in existingChat.docs) {
         final users = List<String>.from(doc['users']);
         if (users.contains(otherUserId)) {
-          return doc.id; // Jika sudah ada, kembalikan chatId
+          return doc.id;
         }
       }
 
-      // Jika chat tidak ditemukan, buat dokumen chat baru
       final newChat = await chatRef.add({
-        'users': [currentUserId, otherUserId], // Array berisi dua user ID
+        'users': [currentUserId, otherUserId],
         'lastMessage': '',
         'timestamp': FieldValue.serverTimestamp(),
       });
 
-      return newChat.id; // Kembalikan ID chat baru
+      return newChat.id;
     } catch (e) {
       print('Error creating or getting chat: $e');
       rethrow;
@@ -42,7 +40,6 @@ class KontakScreen extends StatelessWidget {
     try {
       final contactRef = FirebaseFirestore.instance.collection('contacts');
 
-      // Hapus kontak berdasarkan contactId dan currentUserId
       final query = await contactRef
           .where('addedBy', isEqualTo: currentUserId)
           .where('contactId', isEqualTo: contactId)
@@ -63,10 +60,6 @@ class KontakScreen extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Kontak"),
-        backgroundColor: Colors.red,
-      ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection('contacts')
@@ -94,12 +87,12 @@ class KontakScreen extends StatelessWidget {
             itemCount: contacts.length,
             itemBuilder: (context, index) {
               final contact = contacts[index];
-              final data = contact.data() as Map<String, dynamic>?; // Konversi data ke Map
+              final data = contact.data() as Map<String, dynamic>?;
               final contactId = data?['contactId'] ?? '';
               final name = data?['name'] ?? 'Unknown';
               final profileImageUrl = (data != null && data.containsKey('profileImageUrl'))
                   ? data['profileImageUrl']
-                  : null; // Periksa apakah 'profileImageUrl' ada
+                  : null;
 
               return Card(
                 margin: const EdgeInsets.only(bottom: 16),
@@ -113,10 +106,10 @@ class KontakScreen extends StatelessWidget {
                     backgroundColor: Colors.grey.shade200,
                     backgroundImage: (profileImageUrl != null && profileImageUrl.isNotEmpty)
                         ? NetworkImage(profileImageUrl)
-                        : null, // Jika URL ada, tampilkan gambar
+                        : null,
                     child: (profileImageUrl == null || profileImageUrl.isEmpty)
                         ? Text(
-                            name.isNotEmpty ? name[0].toUpperCase() : 'U', // Jika gambar tidak ada, tampilkan huruf awal nama
+                            name.isNotEmpty ? name[0].toUpperCase() : 'U',
                             style: TextStyle(
                               fontSize: 20,
                               color: Colors.red,
@@ -133,10 +126,8 @@ class KontakScreen extends StatelessWidget {
                   trailing: Icon(Icons.chat, color: Colors.blueAccent),
                   onTap: () async {
                     try {
-                      // Buat atau dapatkan chatId
                       final chatId = await createOrGetChat(contactId);
 
-                      // Navigasikan ke ChatScreen
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -176,7 +167,7 @@ class KontakScreen extends StatelessWidget {
                     );
 
                     if (confirm == true) {
-                      await deleteContact(contactId); // Hapus kontak untuk pengguna ini
+                      await deleteContact(contactId);
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text('Kontak berhasil dihapus.')),
                       );
