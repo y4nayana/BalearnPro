@@ -87,6 +87,7 @@ class KontakScreen extends StatelessWidget {
               final contact = contacts[index];
               final contactId = contact['contactId'];
               final name = contact['name'];
+              final profileImageUrl = contact['profileImageUrl']; // Ambil URL gambar profil
 
               return Card(
                 margin: const EdgeInsets.only(bottom: 16),
@@ -95,6 +96,23 @@ class KontakScreen extends StatelessWidget {
                 ),
                 elevation: 2,
                 child: ListTile(
+                  leading: CircleAvatar(
+                    radius: 24,
+                    backgroundColor: Colors.grey.shade200,
+                    backgroundImage: (profileImageUrl != null && profileImageUrl.isNotEmpty)
+                        ? NetworkImage(profileImageUrl)
+                        : null, // Jika URL ada, tampilkan gambar
+                    child: (profileImageUrl == null || profileImageUrl.isEmpty)
+                        ? Text(
+                            name.isNotEmpty ? name[0].toUpperCase() : 'U', // Jika gambar tidak ada, tampilkan huruf awal nama
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.red,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )
+                        : null,
+                  ),
                   contentPadding: const EdgeInsets.all(16),
                   title: Text(
                     name,

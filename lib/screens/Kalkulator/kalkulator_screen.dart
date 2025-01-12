@@ -50,11 +50,13 @@ class KalkulatorScreenState extends State<KalkulatorScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(80),
         child: Container(
-          color: Colors.white,
+          color: isDarkMode ? Colors.black : Colors.white,
           padding: const EdgeInsets.symmetric(vertical: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -70,12 +72,16 @@ class KalkulatorScreenState extends State<KalkulatorScreen> {
                   children: [
                     Icon(
                       Icons.calculate_outlined,
-                      color: _currentPage == 0 ? Colors.black : Colors.grey,
+                      color: _currentPage == 0
+                          ? (isDarkMode ? Colors.white : Colors.black)
+                          : Colors.grey,
                     ),
                     Text(
                       "Kalkulator",
                       style: TextStyle(
-                        color: _currentPage == 0 ? Colors.black : Colors.grey,
+                        color: _currentPage == 0
+                            ? (isDarkMode ? Colors.white : Colors.black)
+                            : Colors.grey,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -93,12 +99,16 @@ class KalkulatorScreenState extends State<KalkulatorScreen> {
                   children: [
                     Icon(
                       Icons.swap_horiz,
-                      color: _currentPage == 1 ? Colors.black : Colors.grey,
+                      color: _currentPage == 1
+                          ? (isDarkMode ? Colors.white : Colors.black)
+                          : Colors.grey,
                     ),
                     Text(
                       "Konversi",
                       style: TextStyle(
-                        color: _currentPage == 1 ? Colors.black : Colors.grey,
+                        color: _currentPage == 1
+                            ? (isDarkMode ? Colors.white : Colors.black)
+                            : Colors.grey,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -125,12 +135,13 @@ class KalkulatorScreenState extends State<KalkulatorScreen> {
                 child: Container(
                   padding: const EdgeInsets.all(16),
                   alignment: Alignment.bottomRight,
-                  color: Colors.black12,
+                  color: isDarkMode ? Colors.black12 : Colors.black12,
                   child: Text(
                     _output,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 48,
                       fontWeight: FontWeight.bold,
+                      color: isDarkMode ? Colors.white : Colors.black,
                     ),
                   ),
                 ),
@@ -138,7 +149,7 @@ class KalkulatorScreenState extends State<KalkulatorScreen> {
               Expanded(
                 flex: 5,
                 child: Container(
-                  color: Colors.grey[200],
+                  color: isDarkMode ? Colors.grey[900] : Colors.grey[200],
                   padding: const EdgeInsets.symmetric(
                     horizontal: 8.0,
                     vertical: 16.0, // Tambahan padding vertikal untuk jarak
@@ -178,19 +189,19 @@ class KalkulatorScreenState extends State<KalkulatorScreen> {
                       return ElevatedButton(
                         onPressed: () => _buttonPressed(key),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: (key == "=")
-                              ? Colors.white
+                          backgroundColor: isDarkMode
+                              ? (key == "=" ? Colors.blue[900] : Colors.grey[800])
                               : Colors.white,
                           foregroundColor: (key == "=" ||
                                   key == "+" ||
                                   key == "−" ||
                                   key == "×" ||
                                   key == "÷" ||
-                                  key == "%" || // Warna tombol %
+                                  key == "%" || // Warna tombol % khusus operator
                                   key == "AC" ||
                                   key == "⌫")
                               ? Colors.blue // Operator dan kontrol berwarna biru
-                              : Colors.black, // Angka berwarna hitam
+                              : (isDarkMode ? Colors.white : Colors.black), // Angka
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8),
                           ),

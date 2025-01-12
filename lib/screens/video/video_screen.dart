@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:flutter/services.dart'; // Untuk mengatur orientasi layar
 
-
 class VideoScreen extends StatefulWidget {
   final String? videoId;
 
@@ -25,7 +24,7 @@ class _VideoScreenState extends State<VideoScreen> {
     // Tambahkan listener untuk mendeteksi perubahan fullscreen
     _youtubeController.addListener(_onPlayerStateChange);
   }
-  @override
+
   void _onPlayerStateChange() {
     if (_youtubeController.value.isFullScreen) {
       // Ubah orientasi ke landscape jika fullscreen diaktifkan
@@ -53,23 +52,14 @@ class _VideoScreenState extends State<VideoScreen> {
     // Hapus listener untuk menghindari memory leak
     _youtubeController.removeListener(_onPlayerStateChange);
     _youtubeController.dispose();
-  
+
     super.dispose();
   }
-
 
   void _rewind10Seconds() {
     final currentPosition = _youtubeController.value.position;
     final newPosition = currentPosition - Duration(seconds: 10);
     _youtubeController.seekTo(newPosition);
-  }
-
-  void _togglePlayPause() {
-    if (_youtubeController.value.isPlaying) {
-      _youtubeController.pause();
-    } else {
-      _youtubeController.play();
-    }
   }
 
   void _fastForward10Seconds() {
@@ -140,6 +130,7 @@ class _VideoScreenState extends State<VideoScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       body: Column(
         children: [
@@ -149,7 +140,7 @@ class _VideoScreenState extends State<VideoScreen> {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(16),
               child: Container(
-                color: Colors.grey[300],
+                color: isDarkMode ? Colors.grey[800] : Colors.grey[300],
                 child: AspectRatio(
                   aspectRatio: 16 / 9,
                   child: YoutubePlayer(
@@ -176,7 +167,9 @@ class _VideoScreenState extends State<VideoScreen> {
                 ),
                 IconButton(
                   icon: Icon(
-                    _youtubeController.value.isPlaying ? Icons.play_arrow : Icons.pause,
+                    _youtubeController.value.isPlaying
+                        ? Icons.play_arrow
+                        : Icons.pause,
                   ),
                   onPressed: () {
                     setState(() {
@@ -201,7 +194,7 @@ class _VideoScreenState extends State<VideoScreen> {
           ),
           Expanded(
             child: Container(
-              color: Colors.grey[200],
+              color: isDarkMode ? Colors.grey[900] : Colors.grey[200],
               padding: const EdgeInsets.all(16.0),
               child: ListView.builder(
                 itemCount: playlists.length,
@@ -215,11 +208,13 @@ class _VideoScreenState extends State<VideoScreen> {
                       margin: const EdgeInsets.only(bottom: 16.0),
                       padding: const EdgeInsets.all(12.0),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: isDarkMode ? Colors.grey[800] : Colors.white,
                         borderRadius: BorderRadius.circular(12),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
+                            color: isDarkMode
+                                ? Colors.black.withOpacity(0.5)
+                                : Colors.grey.withOpacity(0.5),
                             spreadRadius: 1,
                             blurRadius: 5,
                             offset: Offset(0, 3),
@@ -250,7 +245,9 @@ class _VideoScreenState extends State<VideoScreen> {
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.black,
+                                    color: isDarkMode
+                                        ? Colors.white
+                                        : Colors.black,
                                   ),
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
@@ -260,7 +257,9 @@ class _VideoScreenState extends State<VideoScreen> {
                                   "Terdapat ${playlist["videos"].length} video",
                                   style: TextStyle(
                                     fontSize: 14,
-                                    color: Colors.grey[700],
+                                    color: isDarkMode
+                                        ? Colors.grey[400]
+                                        : Colors.grey[700],
                                   ),
                                 ),
                               ],
