@@ -11,26 +11,31 @@ class KontakScreen extends StatelessWidget {
   Future<String> createOrGetChat(String otherUserId) async {
     final chatRef = FirebaseFirestore.instance.collection('chats');
 
-    // Periksa apakah chat sudah ada
-    final existingChat = await chatRef
-        .where('users', arrayContains: currentUserId)
-        .get();
+    try {
+      // Periksa apakah chat sudah ada
+      final existingChat = await chatRef
+          .where('users', arrayContains: currentUserId)
+          .get();
 
-    for (var doc in existingChat.docs) {
-      final users = List<String>.from(doc['users']);
-      if (users.contains(otherUserId)) {
-        return doc.id; // Jika sudah ada, kembalikan chatId
+      for (var doc in existingChat.docs) {
+        final users = List<String>.from(doc['users']);
+        if (users.contains(otherUserId)) {
+          return doc.id; // Jika sudah ada, kembalikan chatId
+        }
       }
+
+      // Jika chat tidak ditemukan, buat dokumen chat baru
+      final newChat = await chatRef.add({
+        'users': [currentUserId, otherUserId], // Array berisi dua user ID
+        'lastMessage': '',
+        'timestamp': FieldValue.serverTimestamp(),
+      });
+
+      return newChat.id; // Kembalikan ID chat baru
+    } catch (e) {
+      print('Error creating or getting chat: $e');
+      rethrow;
     }
-
-    // Jika chat tidak ditemukan, buat dokumen chat baru
-    final newChat = await chatRef.add({
-      'users': [currentUserId, otherUserId], // Array berisi dua user ID
-      'lastMessage': '',
-      'timestamp': FieldValue.serverTimestamp(),
-    });
-
-    return newChat.id; // Kembalikan ID chat baru
   }
 
   Future<void> deleteContact(String contactId) async {
@@ -58,6 +63,10 @@ class KontakScreen extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Kontak"),
+        backgroundColor: Colors.red,
+      ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection('contacts')
@@ -85,9 +94,12 @@ class KontakScreen extends StatelessWidget {
             itemCount: contacts.length,
             itemBuilder: (context, index) {
               final contact = contacts[index];
-              final contactId = contact['contactId'];
-              final name = contact['name'];
-              final profileImageUrl = contact['profileImageUrl']; // Ambil URL gambar profil
+              final data = contact.data() as Map<String, dynamic>?; // Konversi data ke Map
+              final contactId = data?['contactId'] ?? '';
+              final name = data?['name'] ?? 'Unknown';
+              final profileImageUrl = (data != null && data.containsKey('profileImageUrl'))
+                  ? data['profileImageUrl']
+                  : null; // Periksa apakah 'profileImageUrl' ada
 
               return Card(
                 margin: const EdgeInsets.only(bottom: 16),
