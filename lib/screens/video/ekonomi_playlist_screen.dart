@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:balearnpro2/screens/video_screen.dart';
+import 'package:balearnpro2/screens/video/video_screen.dart';
 
 class EkonomiPlaylistScreen extends StatelessWidget {
   final Map<String, dynamic> playlist;

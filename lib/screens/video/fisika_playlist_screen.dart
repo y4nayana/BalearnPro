@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:balearnpro2/screens/video_screen.dart';
+import 'package:balearnpro2/screens/video/video_screen.dart';
 
-class KimiaPlaylistScreen extends StatelessWidget {
+class FisikaPlaylistScreen extends StatelessWidget {
   final Map<String, dynamic> playlist;
 
-  KimiaPlaylistScreen({required this.playlist});
+  FisikaPlaylistScreen({required this.playlist});
 
   @override
   Widget build(BuildContext context) {
