@@ -1,127 +1,128 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-class AddContactScreen extends StatelessWidget {
+class AddContactScreen extends StatefulWidget {
   final String currentUserId;
 
   AddContactScreen({required this.currentUserId});
 
-  void addContact(BuildContext context, String contactId, String name, String email) async {
-    final contactsRef = FirebaseFirestore.instance.collection('contacts');
+  @override
+  _AddContactScreenState createState() => _AddContactScreenState();
+}
 
-    // Cek apakah kontak sudah ada
-    final existingContact = await contactsRef
-        .where('addedBy', isEqualTo: currentUserId)
-        .where('contactId', isEqualTo: contactId)
-        .get();
+class _AddContactScreenState extends State<AddContactScreen> {
+  List<String> _addedContacts = [];
 
-    if (existingContact.docs.isNotEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('$name sudah ditambahkan sebelumnya.')),
-      );
-      return;
+  @override
+  void initState() {
+    super.initState();
+    _fetchAddedContacts();
+  }
+
+  Future<void> _fetchAddedContacts() async {
+    try {
+      final querySnapshot = await FirebaseFirestore.instance
+          .collection('contacts')
+          .where('addedBy', isEqualTo: widget.currentUserId)
+          .get();
+
+      setState(() {
+        _addedContacts = querySnapshot.docs
+            .map((doc) => doc['contactId'] as String)
+            .toList();
+      });
+    } catch (e) {
+      print('Error fetching contacts: $e');
     }
+  }
 
-    // Tambahkan kontak
-    await contactsRef.add({
-      'contactId': contactId,
-      'name': name,
-      'email': email,
-      'addedBy': currentUserId,
-    });
+  Future<void> _addContact(String contactId, String name) async {
+    try {
+      await FirebaseFirestore.instance.collection('contacts').add({
+        'addedBy': widget.currentUserId,
+        'contactId': contactId,
+        'name': name,
+        'timestamp': FieldValue.serverTimestamp(),
+      });
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Kontak $name berhasil ditambahkan!')),
-    );
+      setState(() {
+        _addedContacts.add(contactId);
+      });
 
-    Navigator.pop(context);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Kontak berhasil ditambahkan.')),
+      );
+    } catch (e) {
+      print('Error adding contact: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Gagal menambahkan kontak.')),
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark; // Cek mode tema
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Tambah Kontak',
-          style: theme.textTheme.titleLarge?.copyWith(color: Colors.white),
-        ),
-        backgroundColor: Colors.redAccent,
-        elevation: 0,
+        title: Text('Tambah Kontak'),
+        backgroundColor: Colors.red,
       ),
-      body: Container(
-        color: Colors.grey[100],
-        child: StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance.collection('users').snapshots(),
-          builder: (context, snapshot) {
-            if (!snapshot.hasData) {
-              return Center(child: CircularProgressIndicator());
-            }
+      body: StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance.collection('users').snapshots(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return Center(child: CircularProgressIndicator());
+          }
 
-            final users = snapshot.data!.docs;
+          final users = snapshot.data!.docs;
+          return ListView.builder(
+            itemCount: users.length,
+            itemBuilder: (context, index) {
+              final user = users[index];
+              final userId = user.id;
+              final name = user['firstName'] + ' ' + user['lastName'];
+              final email = user['email'];
 
-            if (users.isEmpty) {
-              return Center(
-                child: Text(
-                  'Tidak ada pengguna yang tersedia untuk ditambahkan.',
-                  style: theme.textTheme.bodyLarge?.copyWith(color: Colors.grey),
-                  textAlign: TextAlign.center,
+              // Skip the current user
+              if (userId == widget.currentUserId) return SizedBox.shrink();
+
+              return Card(
+                color: isDarkMode ? Colors.grey[800] : Colors.white, // Warna dinamis
+                margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: ListTile(
+                  contentPadding: EdgeInsets.all(16),
+                  title: Text(
+                    name,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: isDarkMode ? Colors.white : Colors.black, // Warna teks dinamis
+                    ),
+                  ),
+                  subtitle: Text(
+                    email,
+                    style: TextStyle(
+                      color: isDarkMode ? Colors.grey[400] : Colors.grey[600], // Warna teks dinamis
+                    ),
+                  ),
+                  trailing: _addedContacts.contains(userId)
+                      ? Icon(Icons.check, color: Colors.green)
+                      : IconButton(
+                          icon: Icon(Icons.person_add, color: Colors.blue),
+                          onPressed: () {
+                            _addContact(userId, name);
+                          },
+                        ),
                 ),
               );
-            }
-
-            return ListView.builder(
-              padding: const EdgeInsets.all(16),
-              itemCount: users.length,
-              itemBuilder: (context, index) {
-                final user = users[index];
-
-                // Jangan tampilkan pengguna saat ini
-                if (user.id == currentUserId) return Container();
-
-                final name = '${user['firstName']} ${user['lastName'] ?? ''}';
-                final email = user['email'];
-
-                return Card(
-                  margin: const EdgeInsets.only(bottom: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  elevation: 2,
-                  child: ListTile(
-                    contentPadding: const EdgeInsets.all(16),
-                    title: Text(
-                      name,
-                      style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
-                    ),
-                    subtitle: Text(
-                      email,
-                      style: theme.textTheme.bodyLarge?.copyWith(color: Colors.grey[600]),
-                    ),
-                    trailing: StreamBuilder<QuerySnapshot>(
-                      stream: FirebaseFirestore.instance
-                          .collection('contacts')
-                          .where('addedBy', isEqualTo: currentUserId)
-                          .where('contactId', isEqualTo: user.id)
-                          .snapshots(),
-                      builder: (context, contactSnapshot) {
-                        if (contactSnapshot.hasData &&
-                            contactSnapshot.data!.docs.isNotEmpty) {
-                          return Icon(Icons.check, color: Colors.green);
-                        }
-                        return Icon(Icons.person_add, color: Colors.greenAccent);
-                      },
-                    ),
-                    onTap: () {
-                      addContact(context, user.id, name, email);
-                    },
-                  ),
-                );
-              },
-            );
-          },
-        ),
+            },
+          );
+        },
       ),
     );
   }
