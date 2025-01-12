@@ -3,165 +3,194 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class RegisterScreen extends StatefulWidget {
-  final PageController pageController;
-
-  RegisterScreen({required this.pageController}); // Tambahkan parameter pageController
-  
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController(); // Ganti `registerPasswordController` dengan `passwordController`
-  bool isPasswordVisible = false;
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
 
-  String? errorMessage;
-
-  // Fungsi validasi input
-  bool _validateInput() {
-    if (firstNameController.text.isEmpty || lastNameController.text.isEmpty || emailController.text.isEmpty || passwordController.text.isEmpty) {
-      setState(() {
-        errorMessage = "Semua field harus diisi.";
-      });
-      return false;
-    }
-
-    if (!RegExp(r"^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$").hasMatch(emailController.text)) {
-      setState(() {
-        errorMessage = "Masukkan email yang valid.";
-      });
-      return false;
-    }
-
-    if (passwordController.text.length < 6) { // Ganti `registerPasswordController` dengan `passwordController`
-      setState(() {
-        errorMessage = "Password harus minimal 6 karakter.";
-      });
-      return false;
-    }
-
-    return true;
-  }
-
-  // Fungsi untuk registrasi
+  // Fungsi untuk mendaftarkan pengguna
   void _register() async {
-    if (!_validateInput()) return;
+    if (emailController.text.isEmpty ||
+        passwordController.text.isEmpty ||
+        confirmPasswordController.text.isEmpty ||
+        firstNameController.text.isEmpty ||
+        lastNameController.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Semua field harus diisi")),
+      );
+      return;
+    }
+
+    if (passwordController.text != confirmPasswordController.text) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Password tidak cocok")),
+      );
+      return;
+    }
 
     try {
-      // Registrasi pengguna ke Firebase Authentication
-      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      // Mendaftarkan user dengan email dan password
+      UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
         email: emailController.text.trim(),
-        password: passwordController.text.trim(), // Ganti `registerPasswordController` dengan `passwordController`
+        password: passwordController.text.trim(),
       );
 
-      // Simpan data pengguna ke Firestore
-      await FirebaseFirestore.instance.collection('users').doc(userCredential.user!.uid).set({
+      // Menyimpan data tambahan di Firestore
+      await _firestore.collection('users').doc(userCredential.user!.uid).set({
         'firstName': firstNameController.text.trim(),
         'lastName': lastNameController.text.trim(),
         'email': emailController.text.trim(),
       });
 
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Registrasi berhasil! Silahkan login.")),
+        SnackBar(content: Text("Pendaftaran berhasil! Silakan login.")),
       );
 
-      // Pindahkan ke halaman login
-      widget.pageController.animateToPage(0, duration: Duration(milliseconds: 300), curve: Curves.easeIn);
+      // Arahkan kembali ke halaman login setelah berhasil register
+      Navigator.pop(context);
     } catch (e) {
-      setState(() {
-        if (e is FirebaseAuthException) {
-          if (e.code == 'email-already-in-use') {
-            errorMessage = "Email sudah terdaftar. Silahkan gunakan email lain.";
-          } else if (e.code == 'weak-password') {
-            errorMessage = "Password terlalu lemah. Gunakan password yang lebih kuat.";
-          } else {
-            errorMessage = "Terjadi kesalahan saat registrasi.";
-          }
-        } else {
-          errorMessage = "Terjadi kesalahan saat registrasi.";
+      String errorMessage = "Terjadi kesalahan saat mendaftar.";
+      if (e is FirebaseAuthException) {
+        if (e.code == 'email-already-in-use') {
+          errorMessage = "Email sudah digunakan.";
         }
-      });
-
-      print("Error during registration: $e");
+      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(errorMessage)),
+      );
     }
+  }
+
+  @override
+  void dispose() {
+    firstNameController.dispose();
+    lastNameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 50.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            TextField(
-              controller: firstNameController,
-              decoration: InputDecoration(
-                labelText: "First Name",
-                prefixIcon: Icon(Icons.person_outline, color: Colors.grey),
-                border: OutlineInputBorder(),
+      appBar: AppBar(
+        title: Text("Register", style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.red,
+        centerTitle: true,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              SizedBox(height: 40),
+              Icon(Icons.person_add, size: 100, color: Colors.red),
+              SizedBox(height: 20),
+              Text(
+                "Buat Akun Baru",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
               ),
-            ),
-            SizedBox(height: 20),
-            TextField(
-              controller: lastNameController,
-              decoration: InputDecoration(
-                labelText: "Last Name",
-                prefixIcon: Icon(Icons.person_outline, color: Colors.grey),
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 20),
-            TextField(
-              controller: emailController,
-              decoration: InputDecoration(
-                labelText: "Email Address",
-                prefixIcon: Icon(Icons.email_outlined, color: Colors.grey),
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 20),
-            TextField(
-              controller: passwordController, // Ganti `registerPasswordController` dengan `passwordController`
-              obscureText: !isPasswordVisible,
-              decoration: InputDecoration(
-                labelText: "Password",
-                prefixIcon: Icon(Icons.lock_outline, color: Colors.grey),
-                suffixIcon: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      isPasswordVisible = !isPasswordVisible;
-                    });
-                  },
-                  child: Icon(
-                    isPasswordVisible ? Icons.visibility : Icons.visibility_off,
-                    color: Colors.grey,
+              SizedBox(height: 20),
+              TextField(
+                controller: firstNameController,
+                decoration: InputDecoration(
+                  labelText: "First Name",
+                  prefixIcon: Icon(Icons.person_outline, color: Colors.grey),
+                  border: OutlineInputBorder(),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red),
                   ),
                 ),
-                border: OutlineInputBorder(),
               ),
-            ),
-            SizedBox(height: 20),
-            if (errorMessage != null)
-              Text(
-                errorMessage!,
-                style: TextStyle(color: Colors.red),
+              SizedBox(height: 20),
+              TextField(
+                controller: lastNameController,
+                decoration: InputDecoration(
+                  labelText: "Last Name",
+                  prefixIcon: Icon(Icons.person_outline, color: Colors.grey),
+                  border: OutlineInputBorder(),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red),
+                  ),
+                ),
               ),
-            ElevatedButton(
-              onPressed: _register,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green,
-                padding: EdgeInsets.symmetric(vertical: 15),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+              SizedBox(height: 20),
+              TextField(
+                controller: emailController,
+                decoration: InputDecoration(
+                  labelText: "Email Address",
+                  prefixIcon: Icon(Icons.email_outlined, color: Colors.grey),
+                  border: OutlineInputBorder(),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red),
+                  ),
+                ),
               ),
-              child: Text("Register", style: TextStyle(color: Colors.white)),
-            ),
-          ],
+              SizedBox(height: 20),
+              TextField(
+                controller: passwordController,
+                obscureText: true,
+                decoration: InputDecoration(
+                  labelText: "Password",
+                  prefixIcon: Icon(Icons.lock_outline, color: Colors.grey),
+                  border: OutlineInputBorder(),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red),
+                  ),
+                ),
+              ),
+              SizedBox(height: 20),
+              TextField(
+                controller: confirmPasswordController,
+                obscureText: true,
+                decoration: InputDecoration(
+                  labelText: "Confirm Password",
+                  prefixIcon: Icon(Icons.lock_outline, color: Colors.grey),
+                  border: OutlineInputBorder(),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red),
+                  ),
+                ),
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: _register,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red,
+                  padding: EdgeInsets.symmetric(vertical: 15),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                child: Text("Register", style: TextStyle(fontSize: 18, color: Colors.white)),
+              ),
+              SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Sudah punya akun?"),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text("Login", style: TextStyle(color: Colors.red)),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -10,6 +10,12 @@ import 'video/video_screen.dart';
 import 'chat/kontak_screen.dart';
 import 'Kalkulator/kalkulator_screen.dart';
 import 'Notes/note_screen.dart';
+import 'pelajaran/matematika_page.dart';
+import 'pelajaran/fisika_page.dart';
+import 'pelajaran/biologi_page.dart';
+import 'pelajaran/ekonomi_page.dart';
+import 'pelajaran/kimia_page.dart';
+import 'pelajaran/bahasainggris_page.dart';
 
 class HomeScreen extends StatefulWidget {
   final String uid;
@@ -291,21 +297,60 @@ class HomeContent extends StatelessWidget {
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
           children: [
-            _buildLessonTile('Matematika', Icons.calculate, onLessonTap),
-            _buildLessonTile('Fisika', Icons.lightbulb, onLessonTap),
-            _buildLessonTile('Biologi', Icons.biotech, onLessonTap),
-            _buildLessonTile('Ekonomi', Icons.attach_money, onLessonTap),
-            _buildLessonTile('Kimia', Icons.science, onLessonTap),
-            _buildLessonTile('Bahasa Inggris', Icons.language, onLessonTap),
+          _buildLessonTile('Matematika', Icons.calculate, onLessonTap, context),
+          _buildLessonTile('Fisika', Icons.lightbulb, onLessonTap, context),
+          _buildLessonTile('Biologi', Icons.biotech, onLessonTap, context),
+          _buildLessonTile('Ekonomi', Icons.attach_money, onLessonTap, context),
+          _buildLessonTile('Kimia', Icons.science, onLessonTap, context),
+          _buildLessonTile('Bahasa Inggris', Icons.language, onLessonTap, context),
           ],
         ),
       ],
     );
   }
 
-  Widget _buildLessonTile(String lesson, IconData icon, Function(String) onTap) {
+  Widget _buildLessonTile(String lesson, IconData icon, Function(String) onTap, BuildContext context) {
     return GestureDetector(
-      onTap: () => onTap(lesson),
+      onTap: () {
+        switch (lesson) {
+          case "Matematika":
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => MatematikaPage()),
+            );
+            break;
+          case "Fisika":
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => FisikaPage()),
+            );
+            break;
+          case "Biologi":
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => BiologiPage()),
+            );
+            break;
+          case "Ekonomi":
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => EkonomiPage()),
+            );
+            break;
+          case "Kimia":
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => KimiaPage()),
+            );
+            break;
+          case "Bahasa Inggris":
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => BahasaInggrisPage()),
+            );
+            break;
+        }
+      },
       child: Card(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -322,4 +367,5 @@ class HomeContent extends StatelessWidget {
       ),
     );
   }
+
 }
