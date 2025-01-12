@@ -1,9 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.balearnpro.app"> <!-- Sesuaikan dengan package name Anda -->
-    
-    <uses-permission android:name="android.permission.INTERNET" />
-
-
+    package="com.balearnpro.app">    
     <application
         android:label="BalearnPro"
         android:icon="@drawable/logo">

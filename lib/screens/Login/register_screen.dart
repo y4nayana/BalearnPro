@@ -6,7 +6,7 @@ class RegisterScreen extends StatefulWidget {
   final PageController pageController;
 
   RegisterScreen({required this.pageController}); // Tambahkan parameter pageController
-
+  
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
 }

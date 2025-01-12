@@ -1,79 +1,44 @@
 plugins {
-    id 'com.android.application'
-    id 'com.google.gms.google-services' // Firebase Google Services Plugin
-    id 'kotlin-android'
-    id 'dev.flutter.flutter-gradle-plugin' // Flutter Gradle Plugin
-}
-
-def keystoreProperties = new Properties()
-def keystorePropertiesFile = rootProject.file('key.properties')
-if (keystorePropertiesFile.exists()) {
-    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+    id "com.android.application"
+    id 'com.google.gms.google-services' // Plugin untuk Firebase
+    id 'kotlin-android' // Plugin Kotlin
+    id 'dev.flutter.flutter-gradle-plugin' // Plugin Flutter Gradle
 }
 
 android {
-    namespace = "com.balearnpro.app" // Sesuaikan dengan package name Firebase
-    compileSdk = 34 // Versi SDK terbaru
+    namespace = "com.balearnpro.app"
+    compileSdk = 34
+    ndkVersion = flutter.ndkVersion
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = JavaVersion.VERSION_1_8
     }
 
+android {
     defaultConfig {
-        applicationId = "com.balearnpro.app" // Sesuaikan dengan package name Firebase
-        minSdk = 23 // Minimal SDK versi
-        targetSdk = 34 // Target SDK versi
-        versionCode = 1
-        versionName = "1.0"
-        multiDexEnabled = true
+        applicationId "com.balearnpro.app"
+        minSdkVersion 23 // Perbarui versi SDK minimal ke 23
+        targetSdkVersion 34 // Bisa disesuaikan dengan versi yang diinginkan
+        versionCode flutter.versionCode
+        versionName flutter.versionName
     }
+}
 
-    signingConfigs {
-        release {
-            keyAlias = keystoreProperties['keyAlias']
-            keyPassword = keystoreProperties['keyPassword']
-            storeFile = keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
-            storePassword = keystoreProperties['storePassword']
-        }
-    }
+
     buildTypes {
-        debug {
-            signingConfig signingConfigs.debug
-        }
         release {
             // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now,
-            // so `flutter run --release` works.
-            signingConfig signingConfigs.release
-            minifyEnabled false
-            shrinkResources false
+            // Signing with the debug keys for now, so `flutter run --release` works.
+            signingConfig = signingConfigs.debug
         }
     }
 }
 
 flutter {
     source = "../.."
-}
-
-dependencies {
-    implementation 'androidx.core:core-ktx:1.9.0'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.8.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
-    implementation 'androidx.multidex:multidex:2.0.1' // MultiDex Support
-
-    // Firebase dependencies
-    implementation platform('com.google.firebase:firebase-bom:31.1.0')
-    implementation 'com.google.firebase:firebase-auth-ktx'
-    implementation 'com.google.firebase:firebase-firestore-ktx'
-
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
