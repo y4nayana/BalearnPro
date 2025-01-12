@@ -1,5 +1,6 @@
 [
     {
+<<<<<<< Updated upstream
         "merged": "com.balearnpro.app-merged_res-55:/drawable-xhdpi-v4_ic_call_answer.png.flat",
         "source": "com.balearnpro.app-core-1.13.1-9:/drawable-xhdpi-v4/ic_call_answer.png"
     },
@@ -3310,5 +3311,29 @@
     {
         "merged": "com.balearnpro.app-merged_res-55:/drawable_mtrl_switch_thumb_pressed.xml.flat",
         "source": "com.balearnpro.app-material-1.8.0-13:/drawable/mtrl_switch_thumb_pressed.xml"
+=======
+        "merged": "com.balearnpro.app-merged_res-5:/drawable-v21_launch_background.xml.flat",
+        "source": "com.balearnpro.app-main-6:/drawable-v21/launch_background.xml"
+    },
+    {
+        "merged": "com.balearnpro.app-merged_res-5:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "com.balearnpro.app-main-6:/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.balearnpro.app-merged_res-5:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "com.balearnpro.app-main-6:/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.balearnpro.app-merged_res-5:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "com.balearnpro.app-main-6:/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.balearnpro.app-merged_res-5:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "com.balearnpro.app-main-6:/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.balearnpro.app-merged_res-5:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "com.balearnpro.app-main-6:/mipmap-xxxhdpi/ic_launcher.png"
+>>>>>>> Stashed changes
     }
 ]

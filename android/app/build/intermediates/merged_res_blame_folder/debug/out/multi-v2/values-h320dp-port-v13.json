@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.balearnpro.app-mergeDebugResources-50:/values-h320dp-port-v13/values-h320dp-port-v13.xml",
+            "outputFile": "com.balearnpro.app-mergeDebugResources-3:/values-h320dp-port-v13/values-h320dp-port-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\KRISNA\\.gradle\\caches\\transforms-3\\62a89e6103463661d384f7396b5cf1f2\\transformed\\material-1.8.0\\res\\values-h320dp-port-v13\\values-h320dp-port-v13.xml",
+                    "source": "C:\\Users\\daffa\\.gradle\\caches\\transforms-3\\62a89e6103463661d384f7396b5cf1f2\\transformed\\material-1.8.0\\res\\values-h320dp-port-v13\\values-h320dp-port-v13.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

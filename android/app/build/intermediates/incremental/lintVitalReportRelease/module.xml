@@ -1,14 +1,15 @@
 <lint-module
     format="1"
-    dir="D:\Telkom\Semester 5\Mobile\BalearnPro\android\app"
+    dir="C:\Tugas Tugas Perkuliahan\SEMESTER 5\PPBM\assesstment 3\BalearnPro\android\app"
     name=":app"
     type="APP"
     maven="android:app:"
     agpVersion="8.1.0"
     buildFolder="build"
-    bootClassPath="C:\Users\KRISNA\AppData\Local\Android\sdk\platforms\android-34\android.jar;C:\Users\KRISNA\AppData\Local\Android\sdk\build-tools\33.0.1\core-lambda-stubs.jar"
+    bootClassPath="C:\Users\daffa\AppData\Local\Android\sdk\platforms\android-34\android.jar;C:\Users\daffa\AppData\Local\Android\sdk\build-tools\33.0.1\core-lambda-stubs.jar"
     javaSourceLevel="11"
-    compileTarget="android-34">
+    compileTarget="android-34"
+    neverShrinking="true">
   <lintOptions
       abortOnError="true"
       absolutePaths="true"

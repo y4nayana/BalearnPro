@@ -4,6 +4,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:balearnpro2/screens/Login/login_screen.dart';
 import 'package:balearnpro2/screens/lesson_screen.dart';
 import 'package:balearnpro2/screens/video_screen.dart';
+import 'package:balearnpro2/screens/matematika_playlist_screen.dart';
+import 'package:balearnpro2/screens/fisika_playlist_screen.dart';
+import 'package:balearnpro2/screens/kimia_playlist_screen.dart';
+import 'package:balearnpro2/screens/biologi_playlist_screen.dart';
+import 'package:balearnpro2/screens/ekonomi_playlist_screen.dart';
+import 'package:balearnpro2/screens/bahasainggris_playlist_screen.dart';
 import 'package:balearnpro2/screens/chat/kontak_screen.dart';
 import 'package:balearnpro2/screens/Kalkulator/kalkulator_screen.dart';
 import 'package:balearnpro2/screens/Notes/note_screen.dart';
@@ -55,6 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
     _pages = [
       HomeContent(
         onLessonTap: _handleLessonTap,
+        onPlaylistTap: _handlePlaylistTap, // Tambahkan untuk playlist
         username: username,
       ),
       KontakScreen(currentUserId: widget.uid),
@@ -72,6 +79,11 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
+  void _handlePlaylistTap(String subject) {
+  
+  
+}
 
   void _logout() async {
     await FirebaseAuth.instance.signOut();
@@ -117,6 +129,7 @@ class _HomeScreenState extends State<HomeScreen> {
           if (_currentIndex == 0) {
             return HomeContent(
               onLessonTap: _handleLessonTap,
+              onPlaylistTap: _handlePlaylistTap, // Tambahkan untuk playlist
               username: username,
             );
           }
@@ -161,9 +174,14 @@ class _HomeScreenState extends State<HomeScreen> {
 
 class HomeContent extends StatelessWidget {
   final Function(String lesson) onLessonTap;
+  final Function(String subject) onPlaylistTap; // Tambahkan untuk playlist
   final String username;
 
-  HomeContent({required this.onLessonTap, required this.username});
+  HomeContent({
+    required this.onLessonTap,
+    required this.onPlaylistTap, // Tambahkan untuk playlist
+    required this.username,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -192,21 +210,21 @@ class HomeContent extends StatelessWidget {
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
           children: [
-            _buildLessonTile('Matematika', Icons.calculate),
-            _buildLessonTile('Fisika', Icons.science),
-            _buildLessonTile('Biologi', Icons.biotech),
-            _buildLessonTile('Ekonomi', Icons.attach_money),
-            _buildLessonTile('Geografi', Icons.public),
-            _buildLessonTile('Bahasa Inggris', Icons.language),
+            _buildLessonTile('Matematika', Icons.calculate, onPlaylistTap),
+            _buildLessonTile('Fisika', Icons.lightbulb, onPlaylistTap),
+            _buildLessonTile('Biologi', Icons.biotech, onPlaylistTap),
+            _buildLessonTile('Ekonomi', Icons.attach_money, onPlaylistTap),
+            _buildLessonTile('Kimia', Icons.science, onPlaylistTap),
+            _buildLessonTile('Bahasa Inggris', Icons.language, onPlaylistTap),
           ],
         ),
       ],
     );
   }
 
-  Widget _buildLessonTile(String lesson, IconData icon) {
+  Widget _buildLessonTile(String lesson, IconData icon, Function(String) onTap) {
     return GestureDetector(
-      onTap: () => onLessonTap(lesson),
+      onTap: () => onTap(lesson),
       child: Card(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
