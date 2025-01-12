@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
 import '../home_screen.dart'; // Pastikan ini sesuai path
 import 'register_screen.dart'; // Pastikan ini sesuai path
 
@@ -9,12 +10,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final PageController _pageController = PageController(); // PageController untuk swipe
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   bool isPasswordVisible = false;
-  bool isLoginPage = true;
 
   // Fungsi untuk login
   void _login() async {
@@ -53,134 +52,103 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  // Fungsi untuk mengubah halaman (Login/Register)
-  void _onTabChange(int index) {
-    setState(() {
-      isLoginPage = index == 0;
-    });
-    _pageController.animateToPage(index,
-        duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
-  }
-
   @override
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
-    _pageController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: Column(
-        children: [
-          SizedBox(height: 40),
-          _buildTabs(), // Tab Login dan Register
-          Expanded(
-            child: PageView(
-              controller: _pageController,
-              onPageChanged: _onTabChange,
-              children: [
-                _buildLoginPage(), // Halaman Login
-                RegisterScreen(pageController: _pageController), // Halaman Register
-              ],
-            ),
-          ),
-        ],
+      appBar: AppBar(
+        title: Text("Login", style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.red,
+        centerTitle: true,
+        automaticallyImplyLeading: false, // Menghilangkan tombol back
       ),
-    );
-  }
-
-  // Widget untuk membuat tab Login dan Register
-  Widget _buildTabs() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        GestureDetector(
-          onTap: () => _onTabChange(0),
-          child: Text(
-            "Login",
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: isLoginPage ? Colors.green : Colors.grey,
-            ),
-          ),
-        ),
-        SizedBox(width: 20),
-        GestureDetector(
-          onTap: () => _onTabChange(1),
-          child: Text(
-            "Register",
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: !isLoginPage ? Colors.green : Colors.grey,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  // Halaman Login
-  Widget _buildLoginPage() {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 50.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          SizedBox(height: 20),
-          TextField(
-            controller: emailController,
-            decoration: InputDecoration(
-              labelText: "Email Address",
-              prefixIcon: Icon(Icons.email_outlined, color: Colors.grey),
-              border: OutlineInputBorder(),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.green),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              SizedBox(height: 40),
+              Icon(Icons.lock, size: 100, color: Colors.red),
+              SizedBox(height: 20),
+              Text(
+                "Masuk ke Akun Anda",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
               ),
-            ),
-          ),
-          SizedBox(height: 20),
-          TextField(
-            controller: passwordController,
-            obscureText: !isPasswordVisible,
-            decoration: InputDecoration(
-              labelText: "Password",
-              prefixIcon: Icon(Icons.lock_outline, color: Colors.grey),
-              suffixIcon: GestureDetector(
-                onTap: () {
-                  setState(() {
-                    isPasswordVisible = !isPasswordVisible;
-                  });
-                },
-                child: Icon(
-                  isPasswordVisible ? Icons.visibility : Icons.visibility_off,
-                  color: Colors.grey,
+              SizedBox(height: 20),
+              TextField(
+                controller: emailController,
+                decoration: InputDecoration(
+                  labelText: "Email Address",
+                  prefixIcon: Icon(Icons.email_outlined, color: Colors.grey),
+                  border: OutlineInputBorder(),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red),
+                  ),
                 ),
               ),
-              border: OutlineInputBorder(),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.green),
+              SizedBox(height: 20),
+              TextField(
+                controller: passwordController,
+                obscureText: !isPasswordVisible,
+                decoration: InputDecoration(
+                  labelText: "Password",
+                  prefixIcon: Icon(Icons.lock_outline, color: Colors.grey),
+                  suffixIcon: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        isPasswordVisible = !isPasswordVisible;
+                      });
+                    },
+                    child: Icon(
+                      isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  border: OutlineInputBorder(),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red),
+                  ),
+                ),
               ),
-            ),
-          ),
-          SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: _login,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.green,
-              padding: EdgeInsets.symmetric(vertical: 15),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: _login,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red,
+                  padding: EdgeInsets.symmetric(vertical: 15),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                child: Text("Login", style: TextStyle(fontSize: 18, color: Colors.white)),
               ),
-            ),
-            child: Text("Login", style: TextStyle(fontSize: 18, color: Colors.white)),
+              SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Belum punya akun?"),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => RegisterScreen()),
+                      );
+                    },
+                    child: Text("Daftar", style: TextStyle(color: Colors.red)),
+                  ),
+                ],
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
