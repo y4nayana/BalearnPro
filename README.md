@@ -1,6 +1,6 @@
-# balearnpro2
+# BalearnPro
 
-A new Flutter project.
+Aplikasi Bimbingan Belajar Online yang dibuat untuk memenuhi Tugas Besar Pemrograman Perangkat Bergerak Multimedia 
 
 ## Getting Started
 
